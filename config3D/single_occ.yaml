@@ -1,0 +1,254 @@
+# 3D Drone Training Curriculum
+# Progressive difficulty system for ML-Agents training
+#
+# CURRICULUM DESIGN:
+#   - target_distance is the DRIVER: it owns all completion_criteria.
+#   - obstacle_count and wind_strength are FOLLOWERS: they only declare values,
+#     so they advance in lockstep with target_distance automatically.
+#
+# Stages at a glance:
+#   hover_training   → distance=0,  obstacles=0,  wind=0
+#   close_target     → distance=5,  obstacles=0,  wind=0
+#   medium_target    → distance=10, obstacles=0,  wind=0
+#   static_obstacles → distance=10, obstacles=3,  wind=0
+#   complex_obstacles→ distance=15, obstacles=6,  wind=0
+#   wind_challenge   → distance=15, obstacles=6,  wind=2
+#   long_distance    → distance=25, obstacles=8,  wind=3
+#   expert_flight    → distance=30, obstacles=10, wind=5
+
+behaviors:
+  DroneAgent:
+    trainer_type: ppo
+
+    hyperparameters:
+      batch_size: 2048 # Must be a multiple of sequence_length (64) → 2048 = 64×32 ✓
+      buffer_size: 40960 # Must be a multiple of batch_size → 40960 = 2048×20 ✓
+      learning_rate: 0.0003
+      beta: 0.02 # Higher entropy early — encourages exploration in hover stage
+      epsilon: 0.2
+      lambd: 0.95
+      num_epoch: 3
+      learning_rate_schedule: linear
+
+    network_settings:
+      normalize: true # Critical for continuous obs like velocity/position
+      hidden_units: 256
+      num_layers: 2
+      # LSTM enabled — obstacles can block line-of-sight to target, creating partial
+      # observability. Memory lets the agent retain where it last saw the target and
+      # build a mental map of obstacle positions across time.
+      memory:
+        use_recurrent: true
+        sequence_length: 64 # How many steps the agent can look back (~1 sec at 60fps)
+        memory_size: 256 # Must be even number, match hidden_units
+
+    reward_signals:
+      extrinsic:
+        gamma: 0.99
+        strength: 1.0
+      curiosity:
+        gamma: 0.99
+        strength: 0.01
+        encoding_size: 256
+
+    max_steps: 10000000
+    time_horizon: 512 # ≥ 8× sequence_length (64) — gives LSTM enough context per rollout
+    summary_freq: 10000
+
+# ==============================================================================
+# CURRICULUM: target_distance is the DRIVER — owns all completion_criteria.
+#             obstacle_count and wind_strength are FOLLOWERS — values only.
+# ==============================================================================
+
+environment_parameters:
+  # ── DRIVER ─────────────────────────────────────────────────────────────────
+  target_distance:
+    curriculum:
+      - name: hover_training
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 5.0
+        value: 0.0
+
+      - name: close_target
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 10.0
+        value: 5.0
+
+      - name: medium_target
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 15.0
+        value: 10.0
+
+      - name: static_obstacles
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 12.0
+        value: 10.0
+
+      - name: complex_obstacles
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 12.0
+        value: 15.0
+
+      - name: wind_challenge
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 10.0
+        value: 15.0
+
+      - name: long_distance
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 15.0
+        value: 25.0
+
+      - name: expert_flight
+        value: 50.0 # Final stage — no completion_criteria needed
+
+  # ── FOLLOWERS (values only, advance with target_distance) ──────────────────
+  obstacle_count:
+    curriculum:
+      - name: hover_training
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 5.0
+        value: 0
+      - name: close_target
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 10.0
+        value: 0
+      - name: medium_target
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 15.0
+        value: 0
+      - name: static_obstacles
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 12.0
+        value: 3
+      - name: complex_obstacles
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 12.0
+        value: 6
+      - name: wind_challenge
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 10.0
+        value: 6
+      - name: long_distance
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 15.0
+        value: 8
+      - name: expert_flight
+        value: 10
+
+  wind_strength:
+    curriculum:
+      - name: hover_training
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 5.0
+        value: 0.0
+      - name: close_target
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 10.0
+        value: 0.0
+      - name: medium_target
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 15.0
+        value: 0.0
+      - name: static_obstacles
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 12.0
+        value: 0.0
+      - name: complex_obstacles
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 12.0
+        value: 0.0
+      - name: wind_challenge
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 10.0
+        value: 2.0
+      - name: long_distance
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 100
+          signal_smoothing: true
+          threshold: 15.0
+        value: 3.0
+      - name: expert_flight
+        value: 5.0
