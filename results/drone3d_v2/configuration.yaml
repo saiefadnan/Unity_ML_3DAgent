@@ -58,7 +58,7 @@ behaviors:
     self_play: null
     behavioral_cloning: null
 env_settings:
-  env_path: G:\unity_files\ML_Drone3D\Build\ML_Drone3D.exe
+  env_path: null
   env_args: null
   base_port: 5005
   num_envs: 1
@@ -74,14 +74,14 @@ engine_settings:
   time_scale: 20
   target_frame_rate: -1
   capture_frame_rate: 60
-  no_graphics: true
+  no_graphics: false
 environment_parameters:
   target_distance:
     curriculum:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8674
+          seed: 976
           value: 0.0
       name: hover_training
       completion_criteria:
@@ -94,7 +94,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8675
+          seed: 977
           value: 5.0
       name: close_target
       completion_criteria:
@@ -107,7 +107,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8676
+          seed: 978
           value: 10.0
       name: medium_target
       completion_criteria:
@@ -120,7 +120,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8677
+          seed: 979
           value: 10.0
       name: static_obstacles
       completion_criteria:
@@ -133,7 +133,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8678
+          seed: 980
           value: 15.0
       name: complex_obstacles
       completion_criteria:
@@ -146,7 +146,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8679
+          seed: 981
           value: 15.0
       name: wind_challenge
       completion_criteria:
@@ -159,7 +159,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8680
+          seed: 982
           value: 25.0
       name: long_distance
       completion_criteria:
@@ -172,7 +172,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8681
+          seed: 983
           value: 50.0
       name: expert_flight
       completion_criteria: null
@@ -181,7 +181,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8682
+          seed: 984
           value: 0
       name: hover_training
       completion_criteria:
@@ -194,7 +194,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8683
+          seed: 985
           value: 0
       name: close_target
       completion_criteria:
@@ -207,7 +207,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8684
+          seed: 986
           value: 0
       name: medium_target
       completion_criteria:
@@ -220,7 +220,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8685
+          seed: 987
           value: 3
       name: static_obstacles
       completion_criteria:
@@ -233,7 +233,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8686
+          seed: 988
           value: 6
       name: complex_obstacles
       completion_criteria:
@@ -246,7 +246,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8687
+          seed: 989
           value: 6
       name: wind_challenge
       completion_criteria:
@@ -259,7 +259,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8688
+          seed: 990
           value: 8
       name: long_distance
       completion_criteria:
@@ -272,7 +272,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8689
+          seed: 991
           value: 10
       name: expert_flight
       completion_criteria: null
@@ -281,7 +281,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8690
+          seed: 992
           value: 0.0
       name: hover_training
       completion_criteria:
@@ -294,7 +294,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8691
+          seed: 993
           value: 0.0
       name: close_target
       completion_criteria:
@@ -307,7 +307,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8692
+          seed: 994
           value: 0.0
       name: medium_target
       completion_criteria:
@@ -320,7 +320,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8693
+          seed: 995
           value: 0.0
       name: static_obstacles
       completion_criteria:
@@ -333,7 +333,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8694
+          seed: 996
           value: 0.0
       name: complex_obstacles
       completion_criteria:
@@ -346,7 +346,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8695
+          seed: 997
           value: 2.0
       name: wind_challenge
       completion_criteria:
@@ -359,7 +359,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8696
+          seed: 998
           value: 3.0
       name: long_distance
       completion_criteria:
@@ -372,7 +372,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 8697
+          seed: 999
           value: 5.0
       name: expert_flight
       completion_criteria: null

@@ -11,58 +11,58 @@
     "DroneAgent": {
         "checkpoints": [
             {
-                "steps": 1935123,
-                "file_path": "results\\drone3d_v2\\DroneAgent\\DroneAgent-1935123.onnx",
-                "reward": 10.741313854853312,
-                "creation_time": 1773454855.1316755,
+                "steps": 2999948,
+                "file_path": "results\\drone3d_v2\\DroneAgent\\DroneAgent-2999948.onnx",
+                "reward": 8.08249758720398,
+                "creation_time": 1773470531.6989434,
                 "auxillary_file_paths": [
-                    "results\\drone3d_v2\\DroneAgent\\DroneAgent-1935123.pt"
+                    "results\\drone3d_v2\\DroneAgent\\DroneAgent-2999948.pt"
                 ]
             },
             {
-                "steps": 1966061,
-                "file_path": "results\\drone3d_v2\\DroneAgent\\DroneAgent-1966061.onnx",
-                "reward": 6.929998354665164,
-                "creation_time": 1773461873.0006974,
+                "steps": 3499887,
+                "file_path": "results\\drone3d_v2\\DroneAgent\\DroneAgent-3499887.onnx",
+                "reward": 10.953318530862981,
+                "creation_time": 1773474095.3065546,
                 "auxillary_file_paths": [
-                    "results\\drone3d_v2\\DroneAgent\\DroneAgent-1966061.pt"
+                    "results\\drone3d_v2\\DroneAgent\\DroneAgent-3499887.pt"
                 ]
             },
             {
-                "steps": 1999650,
-                "file_path": "results\\drone3d_v2\\DroneAgent\\DroneAgent-1999650.onnx",
-                "reward": 6.028284115176047,
-                "creation_time": 1773462156.0481923,
+                "steps": 3500911,
+                "file_path": "results\\drone3d_v2\\DroneAgent\\DroneAgent-3500911.onnx",
+                "reward": 10.953318530862981,
+                "creation_time": 1773474099.4980433,
                 "auxillary_file_paths": [
-                    "results\\drone3d_v2\\DroneAgent\\DroneAgent-1999650.pt"
+                    "results\\drone3d_v2\\DroneAgent\\DroneAgent-3500911.pt"
                 ]
             },
             {
-                "steps": 2055277,
-                "file_path": "results\\drone3d_v2\\DroneAgent\\DroneAgent-2055277.onnx",
-                "reward": 7.6099080219864845,
-                "creation_time": 1773462514.7784407,
+                "steps": 3502141,
+                "file_path": "results\\drone3d_v2\\DroneAgent\\DroneAgent-3502141.onnx",
+                "reward": -26.849308729171753,
+                "creation_time": 1773474216.0101707,
                 "auxillary_file_paths": [
-                    "results\\drone3d_v2\\DroneAgent\\DroneAgent-2055277.pt"
+                    "results\\drone3d_v2\\DroneAgent\\DroneAgent-3502141.pt"
                 ]
             },
             {
-                "steps": 2246613,
-                "file_path": "results\\drone3d_v2\\DroneAgent\\DroneAgent-2246613.onnx",
-                "reward": 10.30025688523338,
-                "creation_time": 1773463726.2498114,
+                "steps": 3517634,
+                "file_path": "results\\drone3d_v2\\DroneAgent\\DroneAgent-3517634.onnx",
+                "reward": -13.835011189705448,
+                "creation_time": 1773474463.7737222,
                 "auxillary_file_paths": [
-                    "results\\drone3d_v2\\DroneAgent\\DroneAgent-2246613.pt"
+                    "results\\drone3d_v2\\DroneAgent\\DroneAgent-3517634.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 2246613,
+            "steps": 3517634,
             "file_path": "results\\drone3d_v2\\DroneAgent.onnx",
-            "reward": 10.30025688523338,
-            "creation_time": 1773463726.2498114,
+            "reward": -13.835011189705448,
+            "creation_time": 1773474463.7737222,
             "auxillary_file_paths": [
-                "results\\drone3d_v2\\DroneAgent\\DroneAgent-2246613.pt"
+                "results\\drone3d_v2\\DroneAgent\\DroneAgent-3517634.pt"
             ]
         }
     },
