@@ -58,7 +58,7 @@ behaviors:
     self_play: null
     behavioral_cloning: null
 env_settings:
-  env_path: G:\unity_files\ML_Drone3D\Build\ML_Drone3D.exe
+  env_path: null
   env_args: null
   base_port: 5005
   num_envs: 1
@@ -74,14 +74,14 @@ engine_settings:
   time_scale: 20
   target_frame_rate: -1
   capture_frame_rate: 60
-  no_graphics: true
+  no_graphics: false
 environment_parameters:
   target_distance:
     curriculum:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7072
+          seed: 1373
           value: 0.0
       name: hover_training
       completion_criteria:
@@ -89,12 +89,12 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 5.0
+        threshold: 8.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7073
+          seed: 1374
           value: 5.0
       name: close_target
       completion_criteria:
@@ -102,12 +102,12 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 10.0
+        threshold: 15.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7074
+          seed: 1375
           value: 10.0
       name: medium_target
       completion_criteria:
@@ -115,12 +115,12 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 15.0
+        threshold: 22.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7075
+          seed: 1376
           value: 10.0
       name: static_obstacles
       completion_criteria:
@@ -128,12 +128,12 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 12.0
+        threshold: 18.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7076
+          seed: 1377
           value: 15.0
       name: complex_obstacles
       completion_criteria:
@@ -141,27 +141,14 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 12.0
+        threshold: 18.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7077
+          seed: 1378
           value: 15.0
       name: wind_challenge
-      completion_criteria:
-        behavior: DroneAgent
-        measure: reward
-        min_lesson_length: 100
-        signal_smoothing: true
-        threshold: 10.0
-        require_reset: false
-    - value:
-        sampler_type: constant
-        sampler_parameters:
-          seed: 7078
-          value: 75.0
-      name: long_distance
       completion_criteria:
         behavior: DroneAgent
         measure: reward
@@ -172,7 +159,20 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7079
+          seed: 1379
+          value: 75.0
+      name: long_distance
+      completion_criteria:
+        behavior: DroneAgent
+        measure: reward
+        min_lesson_length: 100
+        signal_smoothing: true
+        threshold: 22.0
+        require_reset: false
+    - value:
+        sampler_type: constant
+        sampler_parameters:
+          seed: 1380
           value: 80.0
       name: expert_flight
       completion_criteria: null
@@ -181,7 +181,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7080
+          seed: 1381
           value: 0
       name: hover_training
       completion_criteria:
@@ -189,12 +189,12 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 5.0
+        threshold: 8.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7081
+          seed: 1382
           value: 0
       name: close_target
       completion_criteria:
@@ -202,12 +202,12 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 10.0
+        threshold: 15.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7082
+          seed: 1383
           value: 0
       name: medium_target
       completion_criteria:
@@ -215,12 +215,12 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 15.0
+        threshold: 22.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7083
+          seed: 1384
           value: 3
       name: static_obstacles
       completion_criteria:
@@ -228,12 +228,12 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 12.0
+        threshold: 18.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7084
+          seed: 1385
           value: 6
       name: complex_obstacles
       completion_criteria:
@@ -241,27 +241,14 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 12.0
+        threshold: 18.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7085
+          seed: 1386
           value: 6
       name: wind_challenge
-      completion_criteria:
-        behavior: DroneAgent
-        measure: reward
-        min_lesson_length: 100
-        signal_smoothing: true
-        threshold: 10.0
-        require_reset: false
-    - value:
-        sampler_type: constant
-        sampler_parameters:
-          seed: 7086
-          value: 12
-      name: long_distance
       completion_criteria:
         behavior: DroneAgent
         measure: reward
@@ -272,7 +259,20 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7087
+          seed: 1387
+          value: 12
+      name: long_distance
+      completion_criteria:
+        behavior: DroneAgent
+        measure: reward
+        min_lesson_length: 100
+        signal_smoothing: true
+        threshold: 22.0
+        require_reset: false
+    - value:
+        sampler_type: constant
+        sampler_parameters:
+          seed: 1388
           value: 15
       name: expert_flight
       completion_criteria: null
@@ -281,7 +281,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7088
+          seed: 1389
           value: 0.0
       name: hover_training
       completion_criteria:
@@ -289,12 +289,12 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 5.0
+        threshold: 8.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7089
+          seed: 1390
           value: 0.0
       name: close_target
       completion_criteria:
@@ -302,12 +302,12 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 10.0
+        threshold: 15.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7090
+          seed: 1391
           value: 0.0
       name: medium_target
       completion_criteria:
@@ -315,12 +315,12 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 15.0
+        threshold: 22.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7091
+          seed: 1392
           value: 0.0
       name: static_obstacles
       completion_criteria:
@@ -328,12 +328,12 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 12.0
+        threshold: 18.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7092
+          seed: 1393
           value: 0.0
       name: complex_obstacles
       completion_criteria:
@@ -341,27 +341,14 @@ environment_parameters:
         measure: reward
         min_lesson_length: 100
         signal_smoothing: true
-        threshold: 12.0
+        threshold: 18.0
         require_reset: false
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7093
+          seed: 1394
           value: 2.0
       name: wind_challenge
-      completion_criteria:
-        behavior: DroneAgent
-        measure: reward
-        min_lesson_length: 100
-        signal_smoothing: true
-        threshold: 10.0
-        require_reset: false
-    - value:
-        sampler_type: constant
-        sampler_parameters:
-          seed: 7094
-          value: 3.0
-      name: long_distance
       completion_criteria:
         behavior: DroneAgent
         measure: reward
@@ -372,7 +359,20 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7095
+          seed: 1395
+          value: 3.0
+      name: long_distance
+      completion_criteria:
+        behavior: DroneAgent
+        measure: reward
+        min_lesson_length: 100
+        signal_smoothing: true
+        threshold: 22.0
+        require_reset: false
+    - value:
+        sampler_type: constant
+        sampler_parameters:
+          seed: 1396
           value: 5.0
       name: expert_flight
       completion_criteria: null
@@ -382,7 +382,7 @@ checkpoint_settings:
   load_model: false
   resume: true
   force: false
-  train_model: true
+  train_model: false
   inference: false
   results_dir: results
 torch_settings:

@@ -1,9 +1,9 @@
 from typing import List, Optional, Tuple, Dict
 from mlagents.torch_utils import torch, nn
-from mlagents.trainers.torch.layers import LinearEncoder, Initialization
+from mlagents.trainers.torch_entities.layers import LinearEncoder, Initialization
 import numpy as np
 
-from mlagents.trainers.torch.encoders import (
+from mlagents.trainers.torch_entities.encoders import (
     SimpleVisualEncoder,
     ResNetVisualEncoder,
     NatureVisualEncoder,
@@ -12,14 +12,12 @@ from mlagents.trainers.torch.encoders import (
     VectorInput,
 )
 from mlagents.trainers.settings import EncoderType, ScheduleType
-from mlagents.trainers.torch.attention import EntityEmbedding, ResidualSelfAttention
+from mlagents.trainers.torch_entities.attention import EntityEmbedding, ResidualSelfAttention
 from mlagents.trainers.exception import UnityTrainerException
 from mlagents_envs.base_env import ObservationSpec, DimensionProperty
 
 
 class ModelUtils:
-    # Minimum supported side for each encoder type. If refactoring an encoder, please
-    # adjust these also.
     MIN_RESOLUTION_FOR_ENCODER = {
         EncoderType.FULLY_CONNECTED: 1,
         EncoderType.MATCH3: 5,
@@ -42,7 +40,7 @@ class ModelUtils:
             ),
             (DimensionProperty.UNSPECIFIED,) * 3,
         ]
-    )   
+    )
 
     VALID_VECTOR_PROP = frozenset(
         [(DimensionProperty.NONE,), (DimensionProperty.UNSPECIFIED,)]
@@ -54,11 +52,6 @@ class ModelUtils:
 
     @staticmethod
     def update_learning_rate(optim: torch.optim.Optimizer, lr: float) -> None:
-        """
-        Apply a learning rate to a torch optimizer.
-        :param optim: Optimizer
-        :param lr: Learning rate
-        """
         for param_group in optim.param_groups:
             param_group["lr"] = lr
 
@@ -70,27 +63,12 @@ class ModelUtils:
             min_value: float,
             max_step: int,
         ):
-            """
-            Object that represnets value of a parameter that should be decayed, assuming it is a function of
-            global_step.
-            :param schedule: Type of learning rate schedule.
-            :param initial_value: Initial value before decay.
-            :param min_value: Decay value to this value by max_step.
-            :param max_step: The final step count where the return value should equal min_value.
-            :param global_step: The current step count.
-            :return: The value.
-            """
             self.schedule = schedule
             self.initial_value = initial_value
             self.min_value = min_value
             self.max_step = max_step
 
         def get_value(self, global_step: int) -> float:
-            """
-            Get the value at a given global step.
-            :param global_step: Step count.
-            :returns: Decayed value at this global step.
-            """
             if self.schedule == ScheduleType.CONSTANT:
                 return self.initial_value
             elif self.schedule == ScheduleType.LINEAR:
@@ -108,15 +86,6 @@ class ModelUtils:
         global_step: int,
         power: float = 1.0,
     ) -> float:
-        """
-        Get a decayed value based on a polynomial schedule, with respect to the current global step.
-        :param initial_value: Initial value before decay.
-        :param min_value: Decay value to this value by max_step.
-        :param max_step: The final step count where the return value should equal min_value.
-        :param global_step: The current step count.
-        :param power: Power of polynomial decay. 1.0 (default) is a linear decay.
-        :return: The current decayed value.
-        """
         global_step = min(global_step, max_step)
         decayed_value = (initial_value - min_value) * (
             1 - float(global_step) / max_step
@@ -153,27 +122,20 @@ class ModelUtils:
         attention_embedding_size: int,
         vis_encode_type: EncoderType,
     ) -> Tuple[nn.Module, int]:
-        """
-        Returns the encoder and the size of the appropriate encoder.
-        :param shape: Tuples that represent the observation dimension.
-        :param normalize: Normalize all vector inputs.
-        :param h_size: Number of hidden units per layer excluding attention layers.
-        :param attention_embedding_size: Number of hidden units per attention layer.
-        :param vis_encode_type: Type of visual encoder to use.
-        """
         shape = obs_spec.shape
         dim_prop = obs_spec.dimension_property
-        
+
         # VISUAL
         if dim_prop in ModelUtils.VALID_VISUAL_PROP:
             visual_encoder_class = ModelUtils.get_encoder_for_type(vis_encode_type)
             h, w, c = shape[0], shape[1], shape[2]
             ModelUtils._check_resolution_for_encoder(h, w, vis_encode_type)
             return (visual_encoder_class(h, w, c, h_size), h_size)
-        
+
         # VECTOR
         if dim_prop in ModelUtils.VALID_VECTOR_PROP:
             return (VectorInput(shape[0], normalize), shape[0])
+
         # VARIABLE LENGTH
         if dim_prop in ModelUtils.VALID_VAR_LEN_PROP:
             return (
@@ -184,6 +146,7 @@ class ModelUtils:
                 ),
                 0,
             )
+
         # OTHER
         raise UnityTrainerException(f"Unsupported Sensor with specs {obs_spec}")
 
@@ -195,22 +158,6 @@ class ModelUtils:
         attention_embedding_size: int,
         normalize: bool = False,
     ) -> Tuple[nn.ModuleList, List[int]]:
-        """
-        Creates visual and vector encoders, along with their normalizers.
-        :param observation_specs: List of ObservationSpec that represent the observation dimensions.
-        :param action_size: Number of additional un-normalized inputs to each vector encoder. Used for
-            conditioning network on other values (e.g. actions for a Q function)
-        :param h_size: Number of hidden units per layer excluding attention layers.
-        :param attention_embedding_size: Number of hidden units per attention layer.
-        :param vis_encode_type: Type of visual encoder to use.
-        :param unnormalized_inputs: Vector inputs that should not be normalized, and added to the vector
-            obs.
-        :param normalize: Normalize all vector inputs.
-        :return: Tuple of :
-         - ModuleList of the encoders
-         - A list of embedding sizes (0 if the input requires to be processed with a variable length
-         observation encoder)
-        """
         encoders: List[nn.Module] = []
         embedding_sizes: List[int] = []
         for obs_spec in observation_specs:
@@ -220,7 +167,7 @@ class ModelUtils:
             encoders.append(encoder)
             embedding_sizes.append(embedding_size)
 
-        x_self_size = sum(embedding_sizes)  # The size of the "self" embedding
+        x_self_size = sum(embedding_sizes)
         if x_self_size > 0:
             for enc in encoders:
                 if isinstance(enc, EntityEmbedding):
@@ -231,43 +178,24 @@ class ModelUtils:
     def list_to_tensor(
         ndarray_list: List[np.ndarray], dtype: Optional[torch.dtype] = torch.float32
     ) -> torch.Tensor:
-        """
-        Converts a list of numpy arrays into a tensor. MUCH faster than
-        calling as_tensor on the list directly.
-        """
         return torch.as_tensor(np.asanyarray(ndarray_list), dtype=dtype)
 
     @staticmethod
     def list_to_tensor_list(
         ndarray_list: List[np.ndarray], dtype: Optional[torch.dtype] = torch.float32
     ) -> torch.Tensor:
-        """
-        Converts a list of numpy arrays into a list of tensors. MUCH faster than
-        calling as_tensor on the list directly.
-        """
         return [
             torch.as_tensor(np.asanyarray(_arr), dtype=dtype) for _arr in ndarray_list
         ]
 
     @staticmethod
     def to_numpy(tensor: torch.Tensor) -> np.ndarray:
-        """
-        Converts a Torch Tensor to a numpy array. If the Tensor is on the GPU, it will
-        be brought to the CPU.
-        """
         return tensor.detach().cpu().numpy()
 
     @staticmethod
     def break_into_branches(
         concatenated_logits: torch.Tensor, action_size: List[int]
     ) -> List[torch.Tensor]:
-        """
-        Takes a concatenated set of logits that represent multiple discrete action branches
-        and breaks it up into one Tensor per branch.
-        :param concatenated_logits: Tensor that represents the concatenated action branches
-        :param action_size: List of ints containing the number of possible actions for each branch.
-        :return: A List of Tensors containing one tensor per branch.
-        """
         action_idx = [0] + list(np.cumsum(action_size))
         branched_logits = [
             concatenated_logits[:, action_idx[i] : action_idx[i + 1]]
@@ -279,14 +207,6 @@ class ModelUtils:
     def actions_to_onehot(
         discrete_actions: torch.Tensor, action_size: List[int]
     ) -> List[torch.Tensor]:
-        """
-        Takes a tensor of discrete actions and turns it into a List of onehot encoding for each
-        action.
-        :param discrete_actions: Actions in integer form.
-        :param action_size: List of branch sizes. Should be of same size as discrete_actions'
-        last dimension.
-        :return: List of one-hot tensors, one representing each branch.
-        """
         onehot_branches = [
             torch.nn.functional.one_hot(_act.T, action_size[i]).float()
             for i, _act in enumerate(discrete_actions.long().T)
@@ -297,18 +217,6 @@ class ModelUtils:
     def dynamic_partition(
         data: torch.Tensor, partitions: torch.Tensor, num_partitions: int
     ) -> List[torch.Tensor]:
-        """
-        Torch implementation of dynamic_partition :
-        https://www.tensorflow.org/api_docs/python/tf/dynamic_partition
-        Splits the data Tensor input into num_partitions Tensors according to the indices in
-        partitions.
-        :param data: The Tensor data that will be split into partitions.
-        :param partitions: An indices tensor that determines in which partition each element
-        of data will be in.
-        :param num_partitions: The number of partitions to output. Corresponds to the
-        maximum possible index in the partitions argument.
-        :return: A list of Tensor partitions (Their indices correspond to their partition index).
-        """
         res: List[torch.Tensor] = []
         for i in range(num_partitions):
             res += [data[(partitions == i).nonzero().squeeze(1)]]
@@ -316,28 +224,12 @@ class ModelUtils:
 
     @staticmethod
     def masked_mean(tensor: torch.Tensor, masks: torch.Tensor) -> torch.Tensor:
-        """
-        Returns the mean of the tensor but ignoring the values specified by masks.
-        Used for masking out loss functions.
-        :param tensor: Tensor which needs mean computation.
-        :param masks: Boolean tensor of masks with same dimension as tensor.
-        """
         return (tensor.T * masks).sum() / torch.clamp(
             (torch.ones_like(tensor.T) * masks).float().sum(), min=1.0
         )
 
     @staticmethod
     def soft_update(source: nn.Module, target: nn.Module, tau: float) -> None:
-        """
-        Performs an in-place polyak update of the target module based on the source,
-        by a ratio of tau. Note that source and target modules must have the same
-        parameters, where:
-            target = tau * source + (1-tau) * target
-        :param source: Source module whose parameters will be used.
-        :param target: Target module whose parameters will be updated.
-        :param tau: Percentage of source parameters to use in average. Setting tau to
-            1 will copy the source parameters to the target.
-        """
         with torch.no_grad():
             for source_param, target_param in zip(
                 source.parameters(), target.parameters()
@@ -354,21 +246,11 @@ class ModelUtils:
     def create_residual_self_attention(
         input_processors: nn.ModuleList, embedding_sizes: List[int], hidden_size: int
     ) -> Tuple[Optional[ResidualSelfAttention], Optional[LinearEncoder]]:
-        """
-        Creates an RSA if there are variable length observations found in the input processors.
-        :param input_processors: A ModuleList of input processors as returned by the function
-            create_input_processors().
-        :param embedding sizes: A List of embedding sizes as returned by create_input_processors().
-        :param hidden_size: The hidden size to use for the RSA.
-        :returns: A Tuple of the RSA itself, a self encoder, and the embedding size after the RSA.
-            Returns None for the RSA and encoder if no var len inputs are detected.
-        """
         rsa, x_self_encoder = None, None
         entity_num_max: int = 0
         var_processors = [p for p in input_processors if isinstance(p, EntityEmbedding)]
         for processor in var_processors:
             entity_max: int = processor.entity_num_max_elements
-            # Only adds entity max if it was known at construction
             if entity_max > 0:
                 entity_num_max += entity_max
         if len(var_processors) > 0:
@@ -391,15 +273,6 @@ class ModelUtils:
         epsilon: float,
         loss_masks: torch.Tensor,
     ) -> torch.Tensor:
-        """
-        Evaluates value loss, clipping to stay within a trust region of old value estimates.
-        Used for PPO and POCA.
-        :param values: Value output of the current network.
-        :param old_values: Value stored with experiences in buffer.
-        :param returns: Computed returns.
-        :param epsilon: Clipping value for value estimate.
-        :param loss_mask: Mask for losses. Used with LSTM to ignore 0'ed out experiences.
-        """
         value_losses = []
         for name, head in values.items():
             old_val_tensor = old_values[name]
@@ -422,13 +295,6 @@ class ModelUtils:
         loss_masks: torch.Tensor,
         epsilon: float,
     ) -> torch.Tensor:
-        """
-        Evaluate policy loss clipped to stay within a trust region. Used for PPO and POCA.
-        :param advantages: Computed advantages.
-        :param log_probs: Current policy probabilities
-        :param old_log_probs: Past policy probabilities
-        :param loss_masks: Mask for losses. Used with LSTM to ignore 0'ed out experiences.
-        """
         advantage = advantages.unsqueeze(-1)
         r_theta = torch.exp(log_probs - old_log_probs)
         p_opt_a = r_theta * advantage
