@@ -1,3 +1,10 @@
-mlagents-learn config3D\single_occ.yaml --run-id=drone3d_v* --env=G:\unity_files\ML_Drone3D\Build\ML_Drone3D.exe --no-graphics --train 
 
-mlagents-learn config3D\single_occ.yaml --run-id=drone3d_v* --train
+
+-------------PPO-----------
+mlagents-learn config3D\single_occ_ppo.yaml --run-id=drone3d_v* --env=G:\unity_files\ML_Drone3D\Build\ML_Drone3D.exe --no-graphics --train 
+mlagents-learn config3D\single_occ_ppo.yaml --run-id=drone3d_v* --train
+
+
+-------------SAC-----------
+mlagents-learn config3D\single_occ_sac.yaml --run-id=drone3d_v* --env=G:\unity_files\ML_Drone3D\Build\ML_Drone3D.exe --no-graphics --train 
+mlagents-learn config3D\single_occ_sac.yaml --run-id=drone3d_v* --train
