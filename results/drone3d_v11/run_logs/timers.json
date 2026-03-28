@@ -1,0 +1,47 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1774635647",
+        "python_version": "3.10.12 | packaged by Anaconda, Inc. | (main, Jul  5 2023, 19:01:18) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "E:\\anaconda\\envs\\mlagents\\Scripts\\mlagents-learn config3D\\single_occ_clean.yaml --run-id=drone3d_v11 --resume",
+        "mlagents_version": "1.1.0",
+        "mlagents_envs_version": "1.1.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.2.2+cpu",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1774635664"
+    },
+    "total": 16.328823499992723,
+    "count": 1,
+    "self": 0.02760390000184998,
+    "children": {
+        "run_training.setup": {
+            "total": 0.10998300000210293,
+            "count": 1,
+            "self": 0.10998300000210293
+        },
+        "TrainerController.start_learning": {
+            "total": 16.19123659998877,
+            "count": 1,
+            "self": 0.0004741000011563301,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 16.190746200009016,
+                    "count": 1,
+                    "self": 16.190746200009016
+                },
+                "trainer_threads": {
+                    "total": 1.7999846022576094e-06,
+                    "count": 1,
+                    "self": 1.7999846022576094e-06
+                },
+                "TrainerController._save_models": {
+                    "total": 1.4499993994832039e-05,
+                    "count": 1,
+                    "self": 1.4499993994832039e-05
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "target_distance": {
+        "lesson_num": 2
+    },
+    "obstacle_count": {
+        "lesson_num": 2
+    },
+    "DroneAgent": {
+        "checkpoints": [
+            {
+                "steps": 442976,
+                "file_path": "results\\drone3d_v11\\DroneAgent\\DroneAgent-442976.onnx",
+                "reward": -11.26736247062683,
+                "creation_time": 1774600460.234243,
+                "auxillary_file_paths": [
+                    "results\\drone3d_v11\\DroneAgent\\DroneAgent-442976.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 442976,
+            "file_path": "results\\drone3d_v11\\DroneAgent.onnx",
+            "reward": -11.26736247062683,
+            "creation_time": 1774600460.234243,
+            "auxillary_file_paths": [
+                "results\\drone3d_v11\\DroneAgent\\DroneAgent-442976.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.2.2+cpu"
+    }
+}
