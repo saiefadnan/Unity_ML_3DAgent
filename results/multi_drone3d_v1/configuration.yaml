@@ -83,7 +83,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7603
+          seed: 6541
           value: 0.0
       name: hover_training
       completion_criteria:
@@ -96,7 +96,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7604
+          seed: 6542
           value: 5.0
       name: close_target
       completion_criteria:
@@ -109,7 +109,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7605
+          seed: 6543
           value: 15.0
       name: medium_target
       completion_criteria:
@@ -122,7 +122,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7606
+          seed: 6544
           value: 15.0
       name: static_obstacles
       completion_criteria:
@@ -135,7 +135,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7607
+          seed: 6545
           value: 20.0
       name: complex_obstacles
       completion_criteria:
@@ -148,7 +148,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7608
+          seed: 6546
           value: 35.0
       name: mid_distance
       completion_criteria:
@@ -161,7 +161,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7609
+          seed: 6547
           value: 50.0
       name: long_distance
       completion_criteria:
@@ -174,7 +174,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7610
+          seed: 6548
           value: 60.0
       name: expert_flight
       completion_criteria: null
@@ -183,7 +183,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7611
+          seed: 6549
           value: 0
       name: hover_training
       completion_criteria:
@@ -196,7 +196,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7612
+          seed: 6550
           value: 0
       name: close_target
       completion_criteria:
@@ -209,7 +209,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7613
+          seed: 6551
           value: 0
       name: medium_target
       completion_criteria:
@@ -222,7 +222,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7614
+          seed: 6552
           value: 3
       name: static_obstacles
       completion_criteria:
@@ -235,7 +235,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7615
+          seed: 6553
           value: 6
       name: complex_obstacles
       completion_criteria:
@@ -248,7 +248,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7616
+          seed: 6554
           value: 8
       name: mid_distance
       completion_criteria:
@@ -261,7 +261,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7617
+          seed: 6555
           value: 10
       name: long_distance
       completion_criteria:
@@ -274,7 +274,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 7618
+          seed: 6556
           value: 12
       name: expert_flight
       completion_criteria: null
