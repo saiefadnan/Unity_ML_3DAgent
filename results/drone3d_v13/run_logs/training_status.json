@@ -1,0 +1,53 @@
+{
+    "target_distance": {
+        "lesson_num": 0
+    },
+    "obstacle_count": {
+        "lesson_num": 0
+    },
+    "DroneAgent": {
+        "checkpoints": [
+            {
+                "steps": 225072,
+                "file_path": "results\\drone3d_v13\\DroneAgent\\DroneAgent-225072.onnx",
+                "reward": 576.2801549094064,
+                "creation_time": 1774705940.9370027,
+                "auxillary_file_paths": [
+                    "results\\drone3d_v13\\DroneAgent\\DroneAgent-225072.pt"
+                ]
+            },
+            {
+                "steps": 311672,
+                "file_path": "results\\drone3d_v13\\DroneAgent\\DroneAgent-311672.onnx",
+                "reward": 731.470573425293,
+                "creation_time": 1774708058.1962862,
+                "auxillary_file_paths": [
+                    "results\\drone3d_v13\\DroneAgent\\DroneAgent-311672.pt"
+                ]
+            },
+            {
+                "steps": 367696,
+                "file_path": "results\\drone3d_v13\\DroneAgent\\DroneAgent-367696.onnx",
+                "reward": 699.5908592144648,
+                "creation_time": 1774710500.8162816,
+                "auxillary_file_paths": [
+                    "results\\drone3d_v13\\DroneAgent\\DroneAgent-367696.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 367696,
+            "file_path": "results\\drone3d_v13\\DroneAgent.onnx",
+            "reward": 699.5908592144648,
+            "creation_time": 1774710500.8162816,
+            "auxillary_file_paths": [
+                "results\\drone3d_v13\\DroneAgent\\DroneAgent-367696.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.2.2+cpu"
+    }
+}

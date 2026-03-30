@@ -1,8 +1,13 @@
 
 
--------------PPO-----------
+-------------PPO-----------(single)
 mlagents-learn config3D\single_occ_ppo.yaml --run-id=drone3d_v* --env=G:\unity_files\ML_Drone3D\Build\ML_Drone3D.exe --no-graphics --train 
 mlagents-learn config3D\single_occ_ppo.yaml --run-id=drone3d_v* --train
+
+
+-------------PPO-----------(multi)
+mlagents-learn config3D\multi_occ_ppo.yaml --run-id=multi_drone3d_v* --env=G:\unity_files\ML_Multi_Drone3D\build\ML_Multi_Drone3D.exe --no-graphics --train 
+mlagents-learn config3D\multi_occ_ppo.yaml --run-id=multi_drone3d_v* --train
 
 
 -------------SAC-----------
