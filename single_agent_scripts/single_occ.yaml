@@ -1,0 +1,169 @@
+behaviors:
+  DroneAgent:
+    trainer_type: ppo
+
+    hyperparameters:
+      batch_size: 512 
+      buffer_size: 10240 # Halved, no longer processing massive image arrays
+      learning_rate: 0.0003
+      beta: 0.005 # Stays low for precision Angle Mode flying
+      epsilon: 0.2
+      lambd: 0.95
+      num_epoch: 3
+      learning_rate_schedule: linear
+
+    network_settings:
+      normalize: true # Normalizes raycasts and velocity vectors automatically
+      hidden_units: 256
+      num_layers: 2
+      # NO vis_encode_type (Removed Resnet)
+      # NO memory block (Removed LSTM)
+
+    reward_signals:
+      extrinsic:
+        gamma: 0.99
+        strength: 1.0
+      curiosity:
+        gamma: 0.99
+        strength: 0.01
+
+    max_steps: 50000000
+    time_horizon: 1024
+    summary_freq: 10000
+
+environment_parameters:
+  target_distance:
+    curriculum:
+      - name: hover_training
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 20
+          signal_smoothing: true
+          threshold: 8.0
+        value: 0.0
+
+      - name: close_target
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 20
+          signal_smoothing: true
+          threshold: 15.0
+        value: 5.0
+
+      - name: medium_target
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 20
+          signal_smoothing: true
+          threshold: 22.0
+        value: 15.0
+
+      - name: static_obstacles
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 20
+          signal_smoothing: true
+          threshold: 25.0
+        value: 15.0
+
+      - name: complex_obstacles
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 20
+          signal_smoothing: true
+          threshold: 25.0
+        value: 20.0
+
+      - name: mid_distance
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 20
+          signal_smoothing: true
+          threshold: 30.0
+        value: 35.0
+
+      - name: long_distance
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 20
+          signal_smoothing: true
+          threshold: 35.0
+        value: 50.0
+
+      - name: expert_flight
+        value: 60.0
+
+  obstacle_count:
+    curriculum:
+      - name: hover_training
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 20
+          signal_smoothing: true
+          threshold: 8.0
+        value: 0
+
+      - name: close_target
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 20
+          signal_smoothing: true
+          threshold: 15.0
+        value: 0
+
+      - name: medium_target
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 20
+          signal_smoothing: true
+          threshold: 22.0
+        value: 0
+
+      - name: static_obstacles
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 20
+          signal_smoothing: true
+          threshold: 25.0
+        value: 3
+
+      - name: complex_obstacles
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 20
+          signal_smoothing: true
+          threshold: 25.0
+        value: 6
+
+      - name: mid_distance
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 20
+          signal_smoothing: true
+          threshold: 30.0
+        value: 8
+
+      - name: long_distance
+        completion_criteria:
+          measure: reward
+          behavior: DroneAgent
+          min_lesson_length: 20
+          signal_smoothing: true
+          threshold: 35.0
+        value: 10
+
+      - name: expert_flight
+        value: 12
