@@ -3,21 +3,22 @@ behaviors:
     trainer_type: ppo
 
     hyperparameters:
-      batch_size: 512 
-      buffer_size: 10240 # Halved, no longer processing massive image arrays
+      batch_size: 512
+      buffer_size: 10240
       learning_rate: 0.0003
-      beta: 0.005 # Stays low for precision Angle Mode flying
+      beta: 0.005
       epsilon: 0.2
       lambd: 0.95
       num_epoch: 3
       learning_rate_schedule: linear
 
     network_settings:
-      normalize: true # Normalizes raycasts and velocity vectors automatically
+      normalize: true
       hidden_units: 256
       num_layers: 2
-      # NO vis_encode_type (Removed Resnet)
-      # NO memory block (Removed LSTM)
+      # NO vis_encode_type (no ResNet - YOLO runs externally via side-channel)
+      # NO memory block (no LSTM)
+      # Obs size: 21 (was 20 — GPS victim 4obs replaced by YOLO 5obs)
 
     reward_signals:
       extrinsic:

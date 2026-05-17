@@ -1,2 +1,94 @@
 single, ppo - drone3d_v15
 multi, ppo - multi_drone3d_v1
+
+
+🔹 How to frame it like research
+
+Instead of “raycasting,” say:
+
+“I implemented a LiDAR-inspired proximity sensor model, where multiple directional distance rays are emitted to detect obstacles. The agent uses these distance measurements as inputs to navigate the environment safely.”
+
+
+🔴 Must Do Before Submission
+    1. Author Information
+    Fill in your name, department/institution, and email address on the title page. This is the very first thing on the paper.
+
+    2. Abstract — Add Real Numbers
+    The abstract currently ends without any actual results. Once you have your metric numbers, rewrite the last sentence to include something like: "The best-performing setup achieved X% success rate with Y victims rescued per episode, converging in Z million steps."
+
+    3. Results Table V — Fill All 13 Metrics
+    This is the biggest gap. You need to fill every — cell in Table V with your actual measured values from your simulation runs. That means running evaluation episodes (not training) for each of the 4 setups and recording:
+
+    Success Rate (%)
+    Avg Victims / Episode
+    Avg Steps to Complete
+    Completion Time (s) = Steps × 0.02
+    Avg HP Survival
+    Crash Rate (%)
+    Collision Count
+    Stability (uprightness)
+    Avg Distance Traveled
+    Path Efficiency
+    Area Coverage (cells) — single agent setups
+    Team Coverage (cells) — multi agent setups only
+    Reward Convergence — from TensorBoard
+
+
+    4. Random Policy Baseline
+    This is strongly recommended for IEEE reviewers. In Unity, set your agent to take random continuous actions (no trained model) and run 100 episodes per setup. Record all 13 metrics. Add these as a reference column in Table V or as a separate Table VI. Without a baseline, reviewers will ask "how do we know the agent actually learned anything useful?"
+
+    5. Figure 1 — Unity Screenshots
+    Take one screenshot per setup (4 total) from your Unity game view showing the drone, victims, and obstacles. Arrange them as a 2×2 grid image and insert after Section III.A. Even a simple perspective or top-down view is enough — reviewers just need to visually understand your environment.
+
+    6. Figure 2 — TensorBoard Reward Curves
+    Export the cumulative reward curves from TensorBoard for all 4 setups. Put them on one plot or as a 2×2 panel. Insert in Section IV.A. In TensorBoard, go to the Scalars tab, find the reward curve, and use the download button or take a screenshot.
+
+    7. Figure 3 — TensorBoard Episode Length Curves
+    Same as above but for episode length trend. This shows agents completing missions faster over time, which is strong visual evidence of learning. Export and insert in Section IV.A alongside the reward curves.
+
+    8. Results Section — Write Analysis Paragraphs
+    Every subsection in Section IV currently has placeholder text in brackets like "[DESCRIBE SUCCESS RATE FINDINGS]". Once you have your numbers from Step 3, replace each of these with 2–3 sentences describing what the numbers show, which setup performed best, and why you think that happened.
+
+    9. Conclusion — Add Key Numbers
+    The conclusion has one bracketed sentence: "[INSERT KEY QUANTITATIVE FINDING]". Replace this with your single most important result — your best setup's success rate and victim count. This is what reviewers remember.
+
+    10. Acknowledgments
+    Add your supervisor's name, your lab or department, and any funding source or scholarship that supported the work. Standard IEEE format: "The authors would like to thank Prof. X for guidance and [Institution] for providing computational resources."
+
+    11. References — Add 5–10 More
+    The paper currently has 11 references, which is light for IEEE. You need 15–20 minimum. Search Google Scholar for:
+
+    "deep reinforcement learning UAV navigation"
+    "multi-agent exploration coverage RL"
+    "curriculum learning autonomous robotics"
+    "sim-to-real drone transfer"
+    "disaster robotics UAV survey"
+
+    Add the most cited recent papers (2019–2024) that are directly relevant to your work.
+
+
+
+Drone at (0, 5, 0) looking forward →
+
+Camera view (2D):
+┌─────────────────┐
+│                 │
+│      VICTIM ●   │  ← cx=0.7, cy=0.4 (right side, upper)
+│                 │
+└─────────────────┘
+
+Step 1: Normalize
+  camX = (0.7 - 0.5) × 2 = 0.4  (right offset)
+  camY = (0.4 - 0.5) × 2 = -0.2 (up offset)
+
+Step 2: Build direction
+  direction = forward + right×0.4×0.5 + up×(-0.2)×0.3
+  direction = (0,0,1) + (0.2,0,0) + (0,-0.06,0)
+  direction ≈ (0.2, -0.06, 1) → normalized
+
+Step 3: Scale by distance
+  distance = 0.5 (normalized) × 30 = 15 meters
+  victim_pos = (0,5,0) + direction × 15
+  victim_pos ≈ (3, 4, 15)  ← 3D world position!
+
+Result: Drone knows victim is 15 meters ahead-right-up from its current position

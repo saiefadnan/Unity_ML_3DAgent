@@ -1,0 +1,17 @@
+TABLE V: EVALUATION RESULTS ACROSS 4 SETUPS
+===============================================================================================
+
+Metric                                 S1 2D-Single     S2 2D-Multi    S3 3D-Single     S4 3D-Multi
+-----------------------------------------------------------------------------------------------
+Success Rate (%)                              29.0          98.11            0.0           11.0
+Avg Victims / Episode                         3.37            5.0           4.53          12.46
+Avg Steps to Complete                        623.0          252.0              —         4681.0
+Completion Time (s)                          12.46           5.04              —          93.62
+Avg HP Survival                               5.81          96.29         207.98         330.14
+Crash Rate (%)                                 0.0            0.0            0.0            0.0
+Collision Count                                  —              —              —              —
+Stability (uprightness)                          —              —              —              —
+Avg Distance Traveled (m)                   139.37              —         319.09              —
+Path Efficiency                               0.22          1.764          1.542          1.687
+Area Coverage (cells)                         12.0              —              —              —
+Team Coverage (cells)                            —           23.0              —          151.0

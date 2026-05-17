@@ -1,0 +1,30 @@
+{
+  "S1 2D-Single": {
+    "Steps to Converge": 2280000,
+    "Final Average Reward": 61.03786191940308,
+    "Total Steps": 10000000,
+    "Data Points": 1000,
+    "Last 10-20% Tail Size": 200
+  },
+  "S2 2D-Multi": {
+    "Steps to Converge": 7970000,
+    "Final Average Reward": 29.907255682555384,
+    "Total Steps": 7970000,
+    "Data Points": 796,
+    "Last 10-20% Tail Size": 159
+  },
+  "S3 3D-Single": {
+    "Steps to Converge": 2650000,
+    "Final Average Reward": 267.9513489345335,
+    "Total Steps": 2650000,
+    "Data Points": 265,
+    "Last 10-20% Tail Size": 53
+  },
+  "S4 3D-Multi": {
+    "Steps to Converge": 120000,
+    "Final Average Reward": 542.5235580868191,
+    "Total Steps": 7230000,
+    "Data Points": 723,
+    "Last 10-20% Tail Size": 144
+  }
+}

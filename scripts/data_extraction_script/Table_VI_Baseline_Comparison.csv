@@ -1,0 +1,17 @@
+Metric,Setup,PPO,Random Baseline,Improvement
+Success Rate (%),S1 2D-Single,29.0,0.0,∞ (Baseline=0)
+Success Rate (%),S2 2D-Multi,98.11,1.0,+9711%
+Success Rate (%),S3 3D-Single,0.0,0.0,No improvement
+Success Rate (%),S4 3D-Multi,11.0,0.0,∞ (Baseline=0)
+Avg Victims / Episode,S1 2D-Single,3.37,0.37,+811%
+Avg Victims / Episode,S2 2D-Multi,5.0,1.3,+285%
+Avg Victims / Episode,S3 3D-Single,4.53,0.36,+1158%
+Avg Victims / Episode,S4 3D-Multi,12.46,1.14,+993%
+Avg HP Survival,S1 2D-Single,5.81,26.3,-78%
+Avg HP Survival,S2 2D-Multi,96.29,73.98,+30%
+Avg HP Survival,S3 3D-Single,207.98,23.66,+779%
+Avg HP Survival,S4 3D-Multi,330.14,75.67,+336%
+Crash Rate (%),S1 2D-Single,0.0,21.0,21.0pp lower
+Crash Rate (%),S2 2D-Multi,0.0,0.0,No improvement
+Crash Rate (%),S3 3D-Single,0.0,25.0,25.0pp lower
+Crash Rate (%),S4 3D-Multi,0.0,0.0,No improvement
