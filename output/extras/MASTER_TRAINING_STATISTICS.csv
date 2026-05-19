@@ -1,0 +1,5 @@
+Setup,Total_Training_Steps,Total_Episodes,Reward_Initial_Avg,Reward_Final_Avg,Reward_Improvement_%,Reward_Mean,Reward_Std_Dev,Episode_Initial_Avg,Episode_Final_Avg,Episode_Reduction_%,Episode_Mean,Episode_Std_Dev
+S1 2D-Single Agent,7970000,796,3.68,32.82,792.29,30.38,14.93,812,713,12.18,1044,551
+S2 2D-Multi Agent,10000000,1000,25.54,61.11,139.29,57.11,14.53,666,225,66.21,314,214
+S3 3D-Single Agent,2650000,265,21.54,286.96,1232.29,152.79,106.07,1072,1929,-79.94,1747,472
+S4 3D-Multi Agent,7230000,723,155.02,539.03,247.72,477.46,131.07,819,843,-2.91,902,107

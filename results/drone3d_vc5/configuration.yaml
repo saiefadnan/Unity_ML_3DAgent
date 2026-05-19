@@ -58,7 +58,7 @@ behaviors:
     self_play: null
     behavioral_cloning: null
 env_settings:
-  env_path: G:\unity_files\ML_Drone3D\Build\ML_Drone3D.exe
+  env_path: null
   env_args: null
   base_port: 5005
   num_envs: 1
@@ -83,7 +83,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1862
+          seed: 7052
           value: 0.0
       name: hover_training
       completion_criteria:
@@ -96,7 +96,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1863
+          seed: 7053
           value: 5.0
       name: close_target
       completion_criteria:
@@ -109,7 +109,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1864
+          seed: 7054
           value: 15.0
       name: medium_target
       completion_criteria:
@@ -122,7 +122,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1865
+          seed: 7055
           value: 15.0
       name: static_obstacles
       completion_criteria:
@@ -135,7 +135,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1866
+          seed: 7056
           value: 20.0
       name: complex_obstacles
       completion_criteria:
@@ -148,7 +148,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1867
+          seed: 7057
           value: 35.0
       name: mid_distance
       completion_criteria:
@@ -161,7 +161,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1868
+          seed: 7058
           value: 50.0
       name: long_distance
       completion_criteria:
@@ -174,7 +174,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1869
+          seed: 7059
           value: 60.0
       name: expert_flight
       completion_criteria: null
@@ -183,7 +183,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1870
+          seed: 7060
           value: 0
       name: hover_training
       completion_criteria:
@@ -196,7 +196,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1871
+          seed: 7061
           value: 0
       name: close_target
       completion_criteria:
@@ -209,7 +209,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1872
+          seed: 7062
           value: 0
       name: medium_target
       completion_criteria:
@@ -222,7 +222,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1873
+          seed: 7063
           value: 3
       name: static_obstacles
       completion_criteria:
@@ -235,7 +235,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1874
+          seed: 7064
           value: 6
       name: complex_obstacles
       completion_criteria:
@@ -248,7 +248,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1875
+          seed: 7065
           value: 8
       name: mid_distance
       completion_criteria:
@@ -261,7 +261,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1876
+          seed: 7066
           value: 10
       name: long_distance
       completion_criteria:
@@ -274,7 +274,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 1877
+          seed: 7067
           value: 12
       name: expert_flight
       completion_criteria: null
@@ -282,9 +282,9 @@ checkpoint_settings:
   run_id: drone3d_vc5
   initialize_from: null
   load_model: false
-  resume: false
+  resume: true
   force: false
-  train_model: true
+  train_model: false
   inference: false
   results_dir: results
 torch_settings:

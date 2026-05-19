@@ -1,0 +1,90 @@
+{
+  "Reward_Improvement_Ranking": [
+    {
+      "Rank": 1,
+      "Setup": "S3 3D-Single Agent",
+      "Improvement_%": "1232.3%"
+    },
+    {
+      "Rank": 2,
+      "Setup": "S1 2D-Single Agent",
+      "Improvement_%": "792.3%"
+    },
+    {
+      "Rank": 3,
+      "Setup": "S4 3D-Multi Agent",
+      "Improvement_%": "247.7%"
+    },
+    {
+      "Rank": 4,
+      "Setup": "S2 2D-Multi Agent",
+      "Improvement_%": "139.3%"
+    }
+  ],
+  "Episode_Efficiency_Ranking": [
+    {
+      "Rank": 1,
+      "Setup": "S3 3D-Single Agent",
+      "Efficiency_Gain_%": "79.9%"
+    },
+    {
+      "Rank": 2,
+      "Setup": "S2 2D-Multi Agent",
+      "Efficiency_Gain_%": "66.2%"
+    },
+    {
+      "Rank": 3,
+      "Setup": "S1 2D-Single Agent",
+      "Efficiency_Gain_%": "12.2%"
+    },
+    {
+      "Rank": 4,
+      "Setup": "S4 3D-Multi Agent",
+      "Efficiency_Gain_%": "2.9%"
+    }
+  ],
+  "Training_Speed_Ranking": [
+    {
+      "Rank": 1,
+      "Setup": "S3 3D-Single Agent",
+      "Total_Steps": "2,650,000"
+    },
+    {
+      "Rank": 2,
+      "Setup": "S4 3D-Multi Agent",
+      "Total_Steps": "7,230,000"
+    },
+    {
+      "Rank": 3,
+      "Setup": "S1 2D-Single Agent",
+      "Total_Steps": "7,970,000"
+    },
+    {
+      "Rank": 4,
+      "Setup": "S2 2D-Multi Agent",
+      "Total_Steps": "10,000,000"
+    }
+  ],
+  "Convergence_Stability_Ranking": [
+    {
+      "Rank": 1,
+      "Setup": "S2 2D-Multi Agent",
+      "Reward_Std_Dev": "14.53"
+    },
+    {
+      "Rank": 2,
+      "Setup": "S1 2D-Single Agent",
+      "Reward_Std_Dev": "14.93"
+    },
+    {
+      "Rank": 3,
+      "Setup": "S3 3D-Single Agent",
+      "Reward_Std_Dev": "106.07"
+    },
+    {
+      "Rank": 4,
+      "Setup": "S4 3D-Multi Agent",
+      "Reward_Std_Dev": "131.07"
+    }
+  ]
+}

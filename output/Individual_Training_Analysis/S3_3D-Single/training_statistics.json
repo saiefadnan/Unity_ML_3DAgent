@@ -1,0 +1,24 @@
+{
+  "setup_name": "S3 3D-Single Agent",
+  "folder_name": "S3_3D-Single",
+  "total_training_steps": 2650000,
+  "total_episodes": 265,
+  "reward": {
+    "initial_avg": 21.538901255680965,
+    "final_avg": 286.9601733867939,
+    "max": 431.8564758300781,
+    "min": -37.32921600341797,
+    "mean": 152.79455447776138,
+    "std": 106.06601405444333,
+    "improvement_pct": 1232.2878914777841
+  },
+  "episode_length": {
+    "initial_avg": 1071.972629253681,
+    "final_avg": 1928.9456787109375,
+    "max": 2587.0,
+    "min": 389.7307739257813,
+    "mean": 1747.0955076973394,
+    "std": 472.24533763306937,
+    "reduction_pct": -79.94355695946179
+  }
+}

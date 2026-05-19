@@ -1,0 +1,21 @@
+Setup,Metric,Trained,Baseline,Improvement
+S1 2D-Single,Success Rate (%),64.8,2.0,+3140%
+S1 2D-Single,Avg Victims/Episode,3.89,0.50,+678%
+S1 2D-Single,Avg Steps (lower better),553,4500,+88%
+S1 2D-Single,HP Survival,-2.94,50.00,-106%
+S1 2D-Single,Path Efficiency,0.248,0.080,+210%
+S2 2D-Multi,Success Rate (%),0.0,5.0,-100%
+S2 2D-Multi,Avg Victims/Episode,0.00,1.20,-100%
+S2 2D-Multi,Avg Steps (lower better),255,3500,+93%
+S2 2D-Multi,HP Survival,0.00,75.00,-100%
+S2 2D-Multi,Path Efficiency,0.000,0.120,-100%
+S3 3D-Single,Success Rate (%),42.8,0.5,+8460%
+S3 3D-Single,Avg Victims/Episode,2.57,0.30,+757%
+S3 3D-Single,Avg Steps (lower better),2652,4800,+45%
+S3 3D-Single,HP Survival,267.97,25.00,+972%
+S3 3D-Single,Path Efficiency,98337.835,0.050,+196675570%
+S4 3D-Multi,Success Rate (%),0.0,1.5,-100%
+S4 3D-Multi,Avg Victims/Episode,0.00,0.80,-100%
+S4 3D-Multi,Avg Steps (lower better),4325,4200,-3%
+S4 3D-Multi,HP Survival,0.00,80.00,-100%
+S4 3D-Multi,Path Efficiency,0.000,0.100,-100%

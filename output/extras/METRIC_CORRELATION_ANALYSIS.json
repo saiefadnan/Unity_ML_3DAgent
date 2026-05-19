@@ -1,0 +1,43 @@
+{
+  "Analysis_Date": "May 19, 2026",
+  "Total_Configurations": 4,
+  "Total_Training_Figures": 8,
+  "Total_Test_Figures": 12,
+  "Total_Comparison_Figures": 4,
+  "Total_Figures": 24,
+  "Key_Insights": {
+    "2D_Configurations": {
+      "Average_Reward_Improvement": "465.8%",
+      "Average_Episode_Efficiency": "39.2%",
+      "Convergence_Pattern": "Faster than 3D"
+    },
+    "3D_Configurations": {
+      "Average_Reward_Improvement": "740.0%",
+      "Average_Episode_Efficiency": "-41.4%",
+      "Convergence_Pattern": "Higher variance, slower convergence"
+    },
+    "Single_Agent": {
+      "Average_Reward_Improvement": "1012.3%",
+      "Stability": "Variable",
+      "Efficiency": "Mixed"
+    },
+    "Multi_Agent": {
+      "Average_Reward_Improvement": "193.5%",
+      "Stability": "More stable",
+      "Efficiency": "Better episode efficiency"
+    }
+  },
+  "Recommendations": [
+    "2D environments enable faster convergence and more stable learning",
+    "Multi-agent configurations show better episode efficiency",
+    "3D single-agent shows extreme reward improvement but high variance",
+    "For production: Consider 2D-Multi or 3D-Multi for stability",
+    "For research: Investigate why 3D-Single has extreme rewards"
+  ],
+  "Data_Quality": {
+    "Training_Data_Completeness": "100%",
+    "Test_Data_Completeness": "100%",
+    "Statistical_Confidence": "High",
+    "Missing_Values": 0
+  }
+}

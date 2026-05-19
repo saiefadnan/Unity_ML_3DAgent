@@ -1,0 +1,17 @@
+
+\begin{table*}[t]
+\centering
+\caption{Evaluation Results Across Four Training Configurations}
+\label{tab:results}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Metric} & \textbf{S1: 2D-Single} & \textbf{S2: 2D-Multi} & \textbf{S3: 3D-Single} & \textbf{S4: 3D-Multi} \\
+\hline
+Success Rate (\%) & 64.8 & 0.0 & 42.8 & 0.0 \
+Avg Victims / Episode & 3.89 & 0.00 & 2.57 & 0.00 \
+Avg Steps to Complete & 553 & 255 & 2652 & 4325 \
+Avg HP Survival & -2.94 & 0.00 & 267.97 & 0.00 \
+Path Efficiency & 0.248 & 0.000 & 98337.835 & 0.000 \
+\hline
+\end{tabular}
+\end{table*}

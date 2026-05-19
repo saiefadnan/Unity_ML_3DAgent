@@ -1,0 +1,24 @@
+{
+  "setup_name": "S1 2D-Single Agent",
+  "folder_name": "S1_2D-Single",
+  "total_training_steps": 7970000,
+  "total_episodes": 796,
+  "reward": {
+    "initial_avg": 3.6784921405436117,
+    "final_avg": 32.82284217544749,
+    "max": 60.743438720703125,
+    "min": -44.43069076538086,
+    "mean": 30.38004943702239,
+    "std": 14.928787295680703,
+    "improvement_pct": 792.2906702363348
+  },
+  "episode_length": {
+    "initial_avg": 811.7812443986724,
+    "final_avg": 712.8938560002966,
+    "max": 4168.5,
+    "min": 254.44737243652344,
+    "mean": 1043.8285585528042,
+    "std": 551.1071981768251,
+    "reduction_pct": 12.181531549380232
+  }
+}

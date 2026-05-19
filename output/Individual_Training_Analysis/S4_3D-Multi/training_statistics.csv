@@ -1,0 +1,15 @@
+Metric,Value
+Total Training Steps,7230000
+Total Episodes,723
+Reward: Initial Avg,155.02
+Reward: Final Avg,539.03
+Reward: Improvement %,247.72
+Reward: Max,707.93
+Reward: Mean,477.46
+Reward: Std Dev,131.07
+Episode Length: Initial Avg,819
+Episode Length: Final Avg,843
+Episode Length: Reduction %,-2.91
+Episode Length: Max,1150
+Episode Length: Mean,902
+Episode Length: Std Dev,107

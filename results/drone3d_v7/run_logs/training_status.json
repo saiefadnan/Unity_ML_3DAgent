@@ -54,21 +54,30 @@
                 "auxillary_file_paths": [
                     "results\\drone3d_v7\\DroneAgent\\DroneAgent-2555770.pt"
                 ]
+            },
+            {
+                "steps": 2559476,
+                "file_path": "results\\drone3d_v7\\DroneAgent\\DroneAgent-2559476.onnx",
+                "reward": -27.44364709854126,
+                "creation_time": 1779169841.255195,
+                "auxillary_file_paths": [
+                    "results\\drone3d_v7\\DroneAgent\\DroneAgent-2559476.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 2555770,
+            "steps": 2559476,
             "file_path": "results\\drone3d_v7\\DroneAgent.onnx",
-            "reward": 15.740594789385796,
-            "creation_time": 1774274083.9981008,
+            "reward": -27.44364709854126,
+            "creation_time": 1779169841.255195,
             "auxillary_file_paths": [
-                "results\\drone3d_v7\\DroneAgent\\DroneAgent-2555770.pt"
+                "results\\drone3d_v7\\DroneAgent\\DroneAgent-2559476.pt"
             ]
         }
     },
     "metadata": {
         "stats_format_version": "0.3.0",
         "mlagents_version": "1.1.0",
-        "torch_version": "2.2.2+cpu"
+        "torch_version": "2.3.1+cpu"
     }
 }

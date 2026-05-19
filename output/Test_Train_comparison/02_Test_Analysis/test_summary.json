@@ -1,0 +1,38 @@
+{
+  "S1 2D-Single": {
+    "total_episodes": 100,
+    "success_rate": 6.0,
+    "avg_victims": 2.57,
+    "avg_steps": 2652.25,
+    "avg_hp": 267.966,
+    "crash_rate": 0.0,
+    "path_efficiency": 98337.83495
+  },
+  "S2 2D-Multi": {
+    "total_episodes": 100,
+    "success_rate": 98.0,
+    "avg_victims": 5.0,
+    "avg_steps": 255.1,
+    "avg_hp": 96.18233333333332,
+    "crash_rate": 0.0,
+    "path_efficiency": 0.0
+  },
+  "S3 3D-Single": {
+    "total_episodes": 100,
+    "success_rate": 18.0,
+    "avg_victims": 3.89,
+    "avg_steps": 553.37,
+    "avg_hp": -2.9430000000000005,
+    "crash_rate": 0.0,
+    "path_efficiency": 0.24754
+  },
+  "S4 3D-Multi": {
+    "total_episodes": 100,
+    "success_rate": 7.000000000000001,
+    "avg_victims": 3.42,
+    "avg_steps": 4325.4,
+    "avg_hp": 406.038,
+    "crash_rate": 0.0,
+    "path_efficiency": 0.0
+  }
+}

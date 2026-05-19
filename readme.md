@@ -14,8 +14,8 @@ This thesis compares single-agent and multi-agent PPO performance across 2D and 
 |---|---|---|---|
 | 1 | 2D | Single (PPO) | DONE |
 | 2 | 2D | Multi (PPO) | DONE |
-| 3 | 3D | Single (PPO) | IN PROGRESS |
-| 4 | 3D | Multi (PPO) | NEXT |
+| 3 | 3D | Single (PPO) | DONE |
+| 4 | 3D | Multi (PPO) | DONE |
 
 ### Research Questions
 1. Does a PPO agent trained in a 2D environment generalize to 3D?

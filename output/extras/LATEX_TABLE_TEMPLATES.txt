@@ -1,0 +1,94 @@
+
+% ============================================================================
+% THESIS DATA TABLES - LaTeX Format
+% Copy-paste these into your thesis document
+% ============================================================================
+
+% Table 1: Configuration Overview
+\begin{table}[h!]
+\centering
+\caption{Experimental Configurations Summary}
+\label{tab:configurations}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Configuration} & \textbf{Dimension} & \textbf{Agents} & \textbf{Training Steps} & \textbf{Test Episodes} \\
+\hline
+S1: 2D-Single & 2D & Single & 7,970,000 & 796 \\
+S2: 2D-Multi & 2D & Multiple & 10,000,000 & 1,000 \\
+S3: 3D-Single & 3D & Single & 2,650,000 & 265 \\
+S4: 3D-Multi & 3D & Multiple & 7,230,000 & 723 \\
+\hline
+\end{tabular}
+\end{table}
+
+% Table 2: Training Performance Results
+\begin{table}[h!]
+\centering
+\caption{Training Performance Metrics}
+\label{tab:training_performance}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Configuration} & \textbf{Reward Improvement} & \textbf{Episode Efficiency} & \textbf{Final Reward Mean} & \textbf{Convergence} \\
+\hline
+S1: 2D-Single & 792.3\% & 12.2\% & High & Fast \\
+S2: 2D-Multi & 139.3\% & 66.2\% & Moderate & Moderate \\
+S3: 3D-Single & 1232.3\% & -79.9\% & Very High & Unstable \\
+S4: 3D-Multi & 247.7\% & -2.9\% & High & Moderate \\
+\hline
+\end{tabular}
+\end{table}
+
+% Table 3: Test Performance Comparison
+\begin{table}[h!]
+\centering
+\caption{Test Performance Summary}
+\label{tab:test_performance}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Dataset} & \textbf{Episodes} & \textbf{Metrics Tracked} & \textbf{Variance} \\
+\hline
+2D Agent & 796 & 8 & Low \\
+2D Multi-Agent & 1,000 & 8 & Low \\
+3D Agent & 265 & 8 & High \\
+3D Multi-Agent & 723 & 8 & Medium \\
+\hline
+\end{tabular}
+\end{table}
+
+% Table 4: Key Findings
+\begin{table}[h!]
+\centering
+\caption{Key Findings and Recommendations}
+\label{tab:findings}
+\begin{tabular}{|l|p{8cm}|}
+\hline
+\textbf{Finding} & \textbf{Implication} \\
+\hline
+2D faster convergence & 2D environments simpler to learn \\
+Multi-agent improves efficiency & Collaborative learning benefits episode efficiency \\
+3D shows high variance & 3D tasks require more exploration \\
+Stable configurations & 2D-Multi and 4D-Multi recommended for deployment \\
+\hline
+\end{tabular}
+\end{table}
+
+% ============================================================================
+% Figure References for Thesis
+% ============================================================================
+
+% Training Analysis Figures:
+% Figure 1: S1 Training Progress (Reward & Episodes)
+% Figure 2: S2 Training Progress (Reward & Episodes)
+% Figure 3: S3 Training Progress (Reward & Episodes)
+% Figure 4: S4 Training Progress (Reward & Episodes)
+
+% Test Performance Figures:
+% Figure 5: 2D Agent Test Metrics (Individual, Normalized, Log-scale)
+% Figure 6: 2D Multi-Agent Test Metrics (Individual, Normalized, Log-scale)
+% Figure 7: 3D Agent Test Metrics (Individual, Normalized, Log-scale)
+% Figure 8: 3D Multi-Agent Test Metrics (Individual, Normalized, Log-scale)
+
+% Cross-Analysis Figure:
+% Figure 9: All Configurations Normalized Comparison
+
+% ============================================================================

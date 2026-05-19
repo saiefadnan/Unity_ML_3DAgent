@@ -1,0 +1,105 @@
+{
+  "dataset_name": "2DMultiAgent_Test_Results",
+  "total_episodes": 100,
+  "total_columns": 15,
+  "numeric_metrics": {
+    "Episode": {
+      "mean": 50.5,
+      "std": 29.011491975882016,
+      "min": 1.0,
+      "max": 100.0,
+      "median": 50.5
+    },
+    "TeamVictimsRescued": {
+      "mean": 5.0,
+      "std": 0.1421338109037403,
+      "min": 4.0,
+      "max": 6.0,
+      "median": 5.0
+    },
+    "TotalVictims": {
+      "mean": 5.0,
+      "std": 0.0,
+      "min": 5.0,
+      "max": 5.0,
+      "median": 5.0
+    },
+    "StepsTaken": {
+      "mean": 255.1,
+      "std": 98.53087502571638,
+      "min": 95.0,
+      "max": 620.0,
+      "median": 256.5
+    },
+    "Agent0Goals": {
+      "mean": 2.04,
+      "std": 0.5302943722236936,
+      "min": 1.0,
+      "max": 3.0,
+      "median": 2.0
+    },
+    "Agent1Goals": {
+      "mean": 1.47,
+      "std": 0.5765624358421579,
+      "min": 0.0,
+      "max": 3.0,
+      "median": 1.0
+    },
+    "Agent2Goals": {
+      "mean": 1.49,
+      "std": 0.5945034427438947,
+      "min": 0.0,
+      "max": 3.0,
+      "median": 1.0
+    },
+    "Agent0HP": {
+      "mean": 93.439,
+      "std": 11.942225356467135,
+      "min": 38.6,
+      "max": 100.0,
+      "median": 100.0
+    },
+    "Agent1HP": {
+      "mean": 96.475,
+      "std": 8.130058642799167,
+      "min": 61.4,
+      "max": 100.0,
+      "median": 100.0
+    },
+    "Agent2HP": {
+      "mean": 98.633,
+      "std": 4.5940465426858275,
+      "min": 76.9,
+      "max": 100.0,
+      "median": 100.0
+    },
+    "Agent0Efficiency": {
+      "mean": 1.81865,
+      "std": 0.7897197991130216,
+      "min": 0.588,
+      "max": 3.67,
+      "median": 1.819
+    },
+    "Agent1Efficiency": {
+      "mean": 2.0380700000000003,
+      "std": 0.9256685736168309,
+      "min": 0.655,
+      "max": 4.97,
+      "median": 1.8054999999999999
+    },
+    "Agent2Efficiency": {
+      "mean": 1.8406500000000003,
+      "std": 0.7936915332797748,
+      "min": 0.686,
+      "max": 4.202,
+      "median": 1.6915
+    },
+    "TeamExploredCells": {
+      "mean": 22.74,
+      "std": 5.835488779265136,
+      "min": 13.0,
+      "max": 36.0,
+      "median": 22.5
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "S1_2D-Single": {
+    "setup_name": "S1 2D-Single Agent",
+    "folder_name": "S1_2D-Single",
+    "total_training_steps": 7970000,
+    "total_episodes": 796,
+    "reward": {
+      "initial_avg": 3.6784921405436117,
+      "final_avg": 32.82284217544749,
+      "max": 60.743438720703125,
+      "min": -44.43069076538086,
+      "mean": 30.38004943702239,
+      "std": 14.928787295680703,
+      "improvement_pct": 792.2906702363348
+    },
+    "episode_length": {
+      "initial_avg": 811.7812443986724,
+      "final_avg": 712.8938560002966,
+      "max": 4168.5,
+      "min": 254.44737243652344,
+      "mean": 1043.8285585528042,
+      "std": 551.1071981768251,
+      "reduction_pct": 12.181531549380232
+    }
+  },
+  "S2_2D-Multi": {
+    "setup_name": "S2 2D-Multi Agent",
+    "folder_name": "S2_2D-Multi",
+    "total_training_steps": 10000000,
+    "total_episodes": 1000,
+    "reward": {
+      "initial_avg": 25.538777841329576,
+      "final_avg": 61.112166290283206,
+      "max": 147.65493774414062,
+      "min": -35.16328430175781,
+      "mean": 57.112021090865134,
+      "std": 14.52538655331532,
+      "improvement_pct": 139.29166332848152
+    },
+    "episode_length": {
+      "initial_avg": 666.4248490905761,
+      "final_avg": 225.1879638671875,
+      "max": 1819.111083984375,
+      "min": 76.44882202148438,
+      "mean": 314.1282704467773,
+      "std": 214.04722410239788,
+      "reduction_pct": 66.20954873239107
+    }
+  },
+  "S3_3D-Single": {
+    "setup_name": "S3 3D-Single Agent",
+    "folder_name": "S3_3D-Single",
+    "total_training_steps": 2650000,
+    "total_episodes": 265,
+    "reward": {
+      "initial_avg": 21.538901255680965,
+      "final_avg": 286.9601733867939,
+      "max": 431.8564758300781,
+      "min": -37.32921600341797,
+      "mean": 152.79455447776138,
+      "std": 106.06601405444333,
+      "improvement_pct": 1232.2878914777841
+    },
+    "episode_length": {
+      "initial_avg": 1071.972629253681,
+      "final_avg": 1928.9456787109375,
+      "max": 2587.0,
+      "min": 389.7307739257813,
+      "mean": 1747.0955076973394,
+      "std": 472.24533763306937,
+      "reduction_pct": -79.94355695946179
+    }
+  },
+  "S4_3D-Multi": {
+    "setup_name": "S4 3D-Multi Agent",
+    "folder_name": "S4_3D-Multi",
+    "total_training_steps": 7230000,
+    "total_episodes": 723,
+    "reward": {
+      "initial_avg": 155.0193280859126,
+      "final_avg": 539.0263426038954,
+      "max": 707.925048828125,
+      "min": -8.926945686340332,
+      "mean": 477.4615729104104,
+      "std": 131.07488895813546,
+      "improvement_pct": 247.7155715093565
+    },
+    "episode_length": {
+      "initial_avg": 819.356500837538,
+      "final_avg": 843.1896107991537,
+      "max": 1149.77783203125,
+      "min": 305.03125,
+      "mean": 902.1240147001021,
+      "std": 107.21971367480003,
+      "reduction_pct": -2.908759488361141
+    }
+  }
+}

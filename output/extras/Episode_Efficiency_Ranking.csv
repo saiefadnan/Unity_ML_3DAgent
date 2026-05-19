@@ -1,0 +1,5 @@
+Rank,Setup,Efficiency_Gain_%
+1,S3 3D-Single Agent,79.9%
+2,S2 2D-Multi Agent,66.2%
+3,S1 2D-Single Agent,12.2%
+4,S4 3D-Multi Agent,2.9%

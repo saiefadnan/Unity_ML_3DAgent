@@ -1,0 +1,24 @@
+{
+  "setup_name": "S2 2D-Multi Agent",
+  "folder_name": "S2_2D-Multi",
+  "total_training_steps": 10000000,
+  "total_episodes": 1000,
+  "reward": {
+    "initial_avg": 25.538777841329576,
+    "final_avg": 61.112166290283206,
+    "max": 147.65493774414062,
+    "min": -35.16328430175781,
+    "mean": 57.112021090865134,
+    "std": 14.52538655331532,
+    "improvement_pct": 139.29166332848152
+  },
+  "episode_length": {
+    "initial_avg": 666.4248490905761,
+    "final_avg": 225.1879638671875,
+    "max": 1819.111083984375,
+    "min": 76.44882202148438,
+    "mean": 314.1282704467773,
+    "std": 214.04722410239788,
+    "reduction_pct": 66.20954873239107
+  }
+}

@@ -15,15 +15,33 @@
                 "auxillary_file_paths": [
                     "results\\drone3d_vc5\\DroneAgent\\DroneAgent-326409.pt"
                 ]
+            },
+            {
+                "steps": 337177,
+                "file_path": "results\\drone3d_vc5\\DroneAgent\\DroneAgent-337177.onnx",
+                "reward": null,
+                "creation_time": 1779122638.9635038,
+                "auxillary_file_paths": [
+                    "results\\drone3d_vc5\\DroneAgent\\DroneAgent-337177.pt"
+                ]
+            },
+            {
+                "steps": 338265,
+                "file_path": "results\\drone3d_vc5\\DroneAgent\\DroneAgent-338265.onnx",
+                "reward": -1.9605770111083984,
+                "creation_time": 1779123426.5175207,
+                "auxillary_file_paths": [
+                    "results\\drone3d_vc5\\DroneAgent\\DroneAgent-338265.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 326409,
+            "steps": 338265,
             "file_path": "results\\drone3d_vc5\\DroneAgent.onnx",
-            "reward": -15.22027881940206,
-            "creation_time": 1778955099.1469514,
+            "reward": -1.9605770111083984,
+            "creation_time": 1779123426.5175207,
             "auxillary_file_paths": [
-                "results\\drone3d_vc5\\DroneAgent\\DroneAgent-326409.pt"
+                "results\\drone3d_vc5\\DroneAgent\\DroneAgent-338265.pt"
             ]
         }
     },

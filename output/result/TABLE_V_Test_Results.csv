@@ -1,0 +1,5 @@
+Setup,Episodes,Success_Rate_%,Avg_Victims/Episode,Avg_Steps_to_Complete,Completion_Time_s,Avg_HP_Survival,Path_Efficiency,Area_Coverage_cells
+S1 2D-Single,100,64.8,3.89,553,N/A,-2.94,0.248,12.5
+S2 2D-Multi,100,0.0,0.00,255,N/A,0.00,0.000,0.0
+S3 3D-Single,100,42.8,2.57,2652,N/A,267.97,98337.835,0.0
+S4 3D-Multi,100,0.0,0.00,4325,N/A,0.00,0.000,0.0

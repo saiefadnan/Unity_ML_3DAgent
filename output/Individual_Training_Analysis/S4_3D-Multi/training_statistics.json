@@ -1,0 +1,24 @@
+{
+  "setup_name": "S4 3D-Multi Agent",
+  "folder_name": "S4_3D-Multi",
+  "total_training_steps": 7230000,
+  "total_episodes": 723,
+  "reward": {
+    "initial_avg": 155.0193280859126,
+    "final_avg": 539.0263426038954,
+    "max": 707.925048828125,
+    "min": -8.926945686340332,
+    "mean": 477.4615729104104,
+    "std": 131.07488895813546,
+    "improvement_pct": 247.7155715093565
+  },
+  "episode_length": {
+    "initial_avg": 819.356500837538,
+    "final_avg": 843.1896107991537,
+    "max": 1149.77783203125,
+    "min": 305.03125,
+    "mean": 902.1240147001021,
+    "std": 107.21971367480003,
+    "reduction_pct": -2.908759488361141
+  }
+}

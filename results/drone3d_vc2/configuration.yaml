@@ -58,7 +58,7 @@ behaviors:
     self_play: null
     behavioral_cloning: null
 env_settings:
-  env_path: G:\unity_files\ML_Drone3D\Build\ML_Drone3D.exe
+  env_path: null
   env_args: null
   base_port: 5005
   num_envs: 1
@@ -83,7 +83,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 29
+          seed: 3113
           value: 0.0
       name: hover_training
       completion_criteria:
@@ -96,7 +96,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 30
+          seed: 3114
           value: 5.0
       name: close_target
       completion_criteria:
@@ -109,7 +109,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 31
+          seed: 3115
           value: 15.0
       name: medium_target
       completion_criteria:
@@ -122,7 +122,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 32
+          seed: 3116
           value: 15.0
       name: static_obstacles
       completion_criteria:
@@ -135,7 +135,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 33
+          seed: 3117
           value: 20.0
       name: complex_obstacles
       completion_criteria:
@@ -148,7 +148,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 34
+          seed: 3118
           value: 35.0
       name: mid_distance
       completion_criteria:
@@ -161,7 +161,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 35
+          seed: 3119
           value: 50.0
       name: long_distance
       completion_criteria:
@@ -174,7 +174,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 36
+          seed: 3120
           value: 60.0
       name: expert_flight
       completion_criteria: null
@@ -183,7 +183,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 37
+          seed: 3121
           value: 0
       name: hover_training
       completion_criteria:
@@ -196,7 +196,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 38
+          seed: 3122
           value: 0
       name: close_target
       completion_criteria:
@@ -209,7 +209,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 39
+          seed: 3123
           value: 0
       name: medium_target
       completion_criteria:
@@ -222,7 +222,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 40
+          seed: 3124
           value: 3
       name: static_obstacles
       completion_criteria:
@@ -235,7 +235,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 41
+          seed: 3125
           value: 6
       name: complex_obstacles
       completion_criteria:
@@ -248,7 +248,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 42
+          seed: 3126
           value: 8
       name: mid_distance
       completion_criteria:
@@ -261,7 +261,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 43
+          seed: 3127
           value: 10
       name: long_distance
       completion_criteria:
@@ -274,7 +274,7 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 44
+          seed: 3128
           value: 12
       name: expert_flight
       completion_criteria: null

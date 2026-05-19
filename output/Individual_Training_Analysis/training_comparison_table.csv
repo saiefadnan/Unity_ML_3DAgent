@@ -1,0 +1,5 @@
+Setup,Total Steps,Reward Improvement (%),Initial Episode Length,Final Episode Length,Episode Reduction (%)
+S1 2D-Single Agent,7970000,792.3,812,713,12.2
+S2 2D-Multi Agent,10000000,139.3,666,225,66.2
+S3 3D-Single Agent,2650000,1232.3,1072,1929,-79.9
+S4 3D-Multi Agent,7230000,247.7,819,843,-2.9

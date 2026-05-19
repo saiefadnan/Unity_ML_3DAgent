@@ -362,18 +362,18 @@ public class DroneEnvironmentConfig : MonoBehaviour
     void OnDrawGizmos()
     {
         // Draw arena bounds
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireCube(arenaCenter, arenaSize);
+        // Gizmos.color = Color.cyan;
+        // Gizmos.DrawWireCube(arenaCenter, arenaSize);
 
         // Draw success radius around each active victim
-        if (activeVictims != null)
-        {
-            Gizmos.color = Color.green;
-            foreach (var v in activeVictims)
-            {
-                if (v != null && v.activeSelf)
-                    Gizmos.DrawWireSphere(v.transform.position, successRadius);
-            }
-        }
+        // if (activeVictims != null)
+        // {
+        //     Gizmos.color = Color.green;
+        //     foreach (var v in activeVictims)
+        //     {
+        //         if (v != null && v.activeSelf)
+        //             Gizmos.DrawWireSphere(v.transform.position, successRadius);
+        //     }
+        // }
     }
 }
