@@ -87,20 +87,38 @@ for folder in test_folders:
                 "Total_Columns": metrics.get("total_columns", 0)
             }
             
-            # Add metric statistics (mean, std, min, max for first 3 numeric metrics)
-            metric_count = 0
-            for metric_name, stat in metrics.get("numeric_metrics", {}).items():
-                if metric_count >= 3:
-                    break
-                test_row[f"{metric_name}_Mean"] = f'{stat["mean"]:.2f}'
-                test_row[f"{metric_name}_Std"] = f'{stat["std"]:.2f}'
-                test_row[f"{metric_name}_Min"] = f'{stat["min"]:.2f}'
-                test_row[f"{metric_name}_Max"] = f'{stat["max"]:.2f}'
-                metric_count += 1
+            # Add metric statistics for key columns
+            # Single-agent: Episode, VictimsRescued, TotalVictims
+            # Multi-agent: Episode, TeamVictimsRescued, TotalVictims
+            numeric_metrics = metrics.get("numeric_metrics", {})
+            
+            # Always include Episode, VictimsRescued/TeamVictimsRescued, TotalVictims
+            metrics_to_include = ["Episode", "VictimsRescued", "TeamVictimsRescued", "TotalVictims"]
+            
+            for metric_name in metrics_to_include:
+                if metric_name in numeric_metrics:
+                    stat = numeric_metrics[metric_name]
+                    test_row[f"{metric_name}_Mean"] = stat["mean"]
+                    test_row[f"{metric_name}_Std"] = stat["std"]
+                    test_row[f"{metric_name}_Min"] = stat["min"]
+                    test_row[f"{metric_name}_Max"] = stat["max"]
             
             test_summary.append(test_row)
 
+# Create DataFrame with all possible columns to avoid sparse data
+all_columns = ["Dataset", "Total_Episodes", "Total_Columns"]
+for metric_name in ["Episode", "VictimsRescued", "TeamVictimsRescued", "TotalVictims"]:
+    for stat_type in ["Mean", "Std", "Min", "Max"]:
+        all_columns.append(f"{metric_name}_{stat_type}")
+
+# Create DataFrame and reindex to include all columns (fills missing with NaN)
 test_df = pd.DataFrame(test_summary)
+test_df = test_df.reindex(columns=all_columns)
+
+# Format numeric values to 2 decimal places, keep empty as empty strings
+for col in all_columns[3:]:  # Skip first 3 columns
+    test_df[col] = test_df[col].apply(lambda x: f'{x:.2f}' if pd.notna(x) else '')
+
 test_csv = output_folder / "MASTER_TEST_STATISTICS.csv"
 test_df.to_csv(test_csv, index=False)
 print(f"✅ Saved: MASTER_TEST_STATISTICS.csv")
@@ -194,8 +212,9 @@ config_matrix = {
     "Training_Steps": ["7,970,000", "10,000,000", "2,650,000", "7,230,000"],
     "Test_Episodes": ["796", "1,000", "265", "723"],
     "Reward_Improvement": ["792.3%", "139.3%", "1232.3%", "247.7%"],
-    "Episode_Efficiency": ["12.2%", "66.2%", "-79.9%", "-2.9%"],
-    "Recommendation": ["Fast & Stable", "Efficient", "High-Variance", "Balanced"]
+    "Episode_Length_Change": ["Shorter (-12.2%)", "Longer (+66.2%)", "Longer (+79.9%)", "Longer (+2.9%)"],
+    "Interpretation": ["Fast learning", "Thorough but slower", "Very thorough but longest", "Balanced approach"],
+    "Recommendation": ["Fast & Stable", "Efficient", "Comprehensive", "Balanced"]
 }
 
 config_df = pd.DataFrame(config_matrix)

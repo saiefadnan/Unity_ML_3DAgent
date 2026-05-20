@@ -1,0 +1,26 @@
+{
+  "S1 2D-Single": {
+    "final_reward": 31.820060081481934,
+    "max_reward": 60.743438720703125,
+    "total_steps": 7970000,
+    "convergence_steps": 557
+  },
+  "S2 2D-Multi": {
+    "final_reward": 61.112166290283206,
+    "max_reward": 147.65493774414062,
+    "total_steps": 10000000,
+    "convergence_steps": 700
+  },
+  "S3 3D-Single": {
+    "final_reward": 248.6395713043213,
+    "max_reward": 431.8564758300781,
+    "total_steps": 2650000,
+    "convergence_steps": 185
+  },
+  "S4 3D-Multi": {
+    "final_reward": 539.3574301147461,
+    "max_reward": 707.925048828125,
+    "total_steps": 7230000,
+    "convergence_steps": 506
+  }
+}

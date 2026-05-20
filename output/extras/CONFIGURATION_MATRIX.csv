@@ -1,5 +1,0 @@
-Configuration,Dimension,Agent_Count,Complexity,Training_Steps,Test_Episodes,Reward_Improvement,Episode_Efficiency,Recommendation
-S1: 2D-Single,2D,Single,Low,"7,970,000",796,792.3%,12.2%,Fast & Stable
-S2: 2D-Multi,2D,Multiple,High,"10,000,000","1,000",139.3%,66.2%,Efficient
-S3: 3D-Single,3D,Single,Very High,"2,650,000",265,1232.3%,-79.9%,High-Variance
-S4: 3D-Multi,3D,Multiple,Extreme,"7,230,000",723,247.7%,-2.9%,Balanced

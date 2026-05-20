@@ -1,0 +1,5 @@
+Dataset,Total_Episodes,Total_Columns,Episode_Mean,Episode_Std,Episode_Min,Episode_Max,VictimsRescued_Mean,VictimsRescued_Std,VictimsRescued_Min,VictimsRescued_Max,TeamVictimsRescued_Mean,TeamVictimsRescued_Std,TeamVictimsRescued_Min,TeamVictimsRescued_Max,TotalVictims_Mean,TotalVictims_Std,TotalVictims_Min,TotalVictims_Max
+2DAgent_Test_Results,100,9,50.50,29.00,1.00,100.00,3.90,1.40,1.00,6.00,,,,,6.00,0.00,6.00,6.00
+2DMultiAgent_Test_Results,100,15,50.50,29.01,1.00,100.00,,,,,4.99,0.10,4.00,5.00,5.00,0.00,5.00,5.00
+3DAgent_Test_Results,100,9,50.50,29.00,1.00,100.00,2.90,2.00,0.00,6.00,,,,,6.00,0.00,6.00,6.00
+3DMultiAgent_Test_Results,100,15,50.50,29.00,1.00,100.00,,,,,3.40,1.80,0.00,6.00,6.00,0.00,6.00,6.00

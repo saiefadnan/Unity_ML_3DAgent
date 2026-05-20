@@ -1,0 +1,37 @@
+TABLE VI: TRAINED MODEL VS RANDOM BASELINE COMPARISON
+====================================================================================================
+
+Setup                Metric                         Trained PPO          Random Baseline      Improvement         
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+S1 2D-Single         Success Rate (%)               65.0                 2.0                  +3150%              
+S1 2D-Single         Avg Victims/Episode            3.90                 0.50                 +680%               
+S1 2D-Single         Avg Steps (lower better)       553                  4500                 +88%                
+S1 2D-Single         HP Survival                    -2.94                50.00                -106%               
+S1 2D-Single         Path Efficiency                0.240                0.080                +200%               
+----------------------------------------------------------------------------------------------------
+S2 2D-Multi          Success Rate (%)               100.0                5.0                  +1900%              
+S2 2D-Multi          Avg Victims/Episode            5.00                 1.20                 +317%               
+S2 2D-Multi          Avg Steps (lower better)       255                  3500                 +93%                
+S2 2D-Multi          HP Survival                    96.18                75.00                +28%                
+S2 2D-Multi          Path Efficiency                1.772                0.120                +1377%              
+----------------------------------------------------------------------------------------------------
+S3 3D-Single         Success Rate (%)               48.3                 0.5                  +9560%              
+S3 3D-Single         Avg Victims/Episode            2.90                 0.30                 +867%               
+S3 3D-Single         Avg Steps (lower better)       2678                 4800                 +44%                
+S3 3D-Single         HP Survival                    247.63               25.00                +891%               
+S3 3D-Single         Path Efficiency                1.203                0.050                +2306%              
+----------------------------------------------------------------------------------------------------
+S4 3D-Multi          Success Rate (%)               56.7                 1.5                  +3680%              
+S4 3D-Multi          Avg Victims/Episode            3.40                 0.80                 +325%               
+S4 3D-Multi          Avg Steps (lower better)       4325                 4200                 -3%                 
+S4 3D-Multi          HP Survival                    406.04               80.00                +408%               
+S4 3D-Multi          Path Efficiency                1.300                0.100                +1200%              
+----------------------------------------------------------------------------------------------------
+
+
+NOTES:
+- Trained: Results from PPO-trained agent tested on 100-1000 episodes
+- Baseline: Estimated performance from random policy (synthetic)
+- Improvement: Percentage increase over baseline (∞ = baseline=0)
+- 'Avg Steps (lower better)': Fewer steps = faster completion

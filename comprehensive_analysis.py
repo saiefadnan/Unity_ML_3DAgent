@@ -40,24 +40,24 @@ print("=" * 90)
 # Setup names and file mappings
 setups = {
     "S1 2D-Single": {
-        "train_reward": "drone7.2_DroneAgent.csv",
-        "train_episode": "drone7.2_DroneAgent.csv",
-        "test": "2DDrone_Test_Results.csv"
+        "train_reward": "2DAgent_Train_Results.csv",
+        "train_episode": "2DAgent_Train_Results.csv",
+        "test": "2DAgent_Test_Results.csv"
     },
     "S2 2D-Multi": {
-        "train_reward": "drone6.10_DroneAgent.csv",
-        "train_episode": "drone6.10_DroneAgent.csv",
-        "test": "MultiAgent2D_Test_Results.csv"
+        "train_reward": "2DMultiAgent_Train_Results.csv",
+        "train_episode": "2DMultiAgent_Train_Results.csv",
+        "test": "2DMultiAgent_Test_Results.csv"
     },
     "S3 3D-Single": {
-        "train_reward": "drone3d_v15_DroneAgent.csv",
-        "train_episode": "drone3d_v15_DroneAgent (1).csv",
-        "test": "Agent2D_Test_Results.csv"
+        "train_reward": "3DAgent_Train_Results.csv",
+        "train_episode": "3DAgent_Train_Results.csv",
+        "test": "3DAgent_Test_Results.csv"
     },
     "S4 3D-Multi": {
-        "train_reward": "multi_drone3d_v1_DroneAgent.csv",
-        "train_episode": "multi_drone3d_v1_DroneAgent (1).csv",
-        "test": "3DMulti_Test_Results.csv"
+        "train_reward": "3DMultiAgent_Train_Results.csv",
+        "train_episode": "3DMultiAgent_Train_Results.csv",
+        "test": "3DMultiAgent_Test_Results.csv"
     }
 }
 
@@ -74,7 +74,7 @@ all_data = {}
 # LOAD DATA
 # ============================================================================
 
-print("\n📂 Loading data from all sources...")
+print("\nLoading data from all sources...")
 
 for setup_name, files in setups.items():
     print(f"\n  Loading {setup_name}...")
@@ -85,27 +85,31 @@ for setup_name, files in setups.items():
         reward_path = train_reward_folder / files["train_reward"]
         if reward_path.exists():
             all_data[setup_name]["train_reward"] = pd.read_csv(reward_path)
-            print(f"    ✓ Training reward: {len(all_data[setup_name]['train_reward'])} rows")
+            print(f"    [+] Training reward: {len(all_data[setup_name]['train_reward'])} rows")
+        else:
+            print(f"    [-] Training reward: Not found")
     except Exception as e:
-        print(f"    ✗ Training reward: {e}")
+        print(f"    [-] Training reward: {e}")
     
     # Load training episode
     try:
         episode_path = train_episode_folder / files["train_episode"]
         if episode_path.exists():
             all_data[setup_name]["train_episode"] = pd.read_csv(episode_path)
-            print(f"    ✓ Training episode: {len(all_data[setup_name]['train_episode'])} rows")
+            print(f"    [+] Training episode: {len(all_data[setup_name]['train_episode'])} rows")
+        else:
+            print(f"    [-] Training episode: Not found")
     except Exception as e:
-        print(f"    ✗ Training episode: {e}")
+        print(f"    [-] Training episode: {e}")
     
     # Load test data
     try:
         test_path = test_folder / files["test"]
         if test_path.exists():
             all_data[setup_name]["test"] = pd.read_csv(test_path)
-            print(f"    ✓ Test data: {len(all_data[setup_name]['test'])} rows")
+            print(f"    [+] Test data: {len(all_data[setup_name]['test'])} rows")
     except Exception as e:
-        print(f"    ✗ Test data: {e}")
+        print(f"    [-] Test data: {e}")
 
 # ============================================================================
 # TRAINING ANALYSIS
@@ -118,7 +122,7 @@ print(f"{'='*90}")
 training_summary = {}
 
 # Figure 1: Reward Convergence
-print("\n📊 Creating training reward convergence plots...")
+print("\nCreating training reward convergence plots...")
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
 fig.suptitle('Figure 1: Training Progress - Cumulative Reward Convergence', 
@@ -127,24 +131,28 @@ fig.suptitle('Figure 1: Training Progress - Cumulative Reward Convergence',
 for setup_name in sorted(setups.keys()):
     if "train_reward" in all_data[setup_name]:
         df = all_data[setup_name]["train_reward"]
-        if 'Step' in df.columns and 'Value' in df.columns:
+        # Handle both 'Step' and column name variations
+        step_col = 'Step' if 'Step' in df.columns else df.columns[1]
+        value_col = 'Value' if 'Value' in df.columns else df.columns[2]
+        
+        if step_col in df.columns and value_col in df.columns:
             # Raw data
-            ax1.plot(df['Step'], df['Value'], label=setup_name, 
+            ax1.plot(df[step_col], df[value_col], label=setup_name, 
                     color=colors[setup_name], alpha=0.6, linewidth=1.5)
             
             # Smoothed (rolling average)
             window = max(len(df) // 100, 10)
-            smoothed = df['Value'].rolling(window=window, center=True).mean()
-            ax2.plot(df['Step'], smoothed, label=setup_name, 
+            smoothed = df[value_col].rolling(window=window, center=True).mean()
+            ax2.plot(df[step_col], smoothed, label=setup_name, 
                     color=colors[setup_name], linewidth=2.5, marker='o', markersize=3)
             
             # Calculate statistics
-            final_reward = df['Value'].tail(100).mean()
-            max_reward = df['Value'].max()
+            final_reward = df[value_col].tail(100).mean()
+            max_reward = df[value_col].max()
             training_summary[setup_name] = {
                 "final_reward": float(final_reward),
                 "max_reward": float(max_reward),
-                "total_steps": int(df['Step'].max()),
+                "total_steps": int(df[step_col].max()),
                 "convergence_steps": int(len(df) * 0.7)  # Estimate
             }
 
@@ -163,10 +171,10 @@ ax2.grid(True, alpha=0.3)
 plt.tight_layout()
 fig.savefig(training_folder / "Figure1_reward_convergence.png", dpi=300, bbox_inches='tight')
 plt.close()
-print(f"   ✅ Saved: Figure1_reward_convergence.png")
+print(f"   [OK] Saved: Figure1_reward_convergence.png")
 
 # Figure 2: Episode Length During Training
-print("\n📊 Creating episode length trend plots...")
+print("\nCreating episode length trend plots...")
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
 fig.suptitle('Figure 2: Training Progress - Episode Length Trends', 
@@ -175,15 +183,19 @@ fig.suptitle('Figure 2: Training Progress - Episode Length Trends',
 for setup_name in sorted(setups.keys()):
     if "train_episode" in all_data[setup_name]:
         df = all_data[setup_name]["train_episode"]
-        if 'Step' in df.columns and 'Value' in df.columns:
+        # Handle both 'Step' and column name variations
+        step_col = 'Step' if 'Step' in df.columns else df.columns[1]
+        value_col = 'Value' if 'Value' in df.columns else df.columns[2]
+        
+        if step_col in df.columns and value_col in df.columns:
             # Raw data
-            ax1.plot(df['Step'], df['Value'], label=setup_name, 
+            ax1.plot(df[step_col], df[value_col], label=setup_name, 
                     color=colors[setup_name], alpha=0.6, linewidth=1.5)
             
             # Smoothed
             window = max(len(df) // 100, 10)
-            smoothed = df['Value'].rolling(window=window, center=True).mean()
-            ax2.plot(df['Step'], smoothed, label=setup_name, 
+            smoothed = df[value_col].rolling(window=window, center=True).mean()
+            ax2.plot(df[step_col], smoothed, label=setup_name, 
                     color=colors[setup_name], linewidth=2.5, marker='o', markersize=3)
 
 ax1.set_xlabel('Training Steps', fontsize=11, fontweight='bold')
@@ -201,7 +213,7 @@ ax2.grid(True, alpha=0.3)
 plt.tight_layout()
 fig.savefig(training_folder / "Figure2_episode_length_trends.png", dpi=300, bbox_inches='tight')
 plt.close()
-print(f"   ✅ Saved: Figure2_episode_length_trends.png")
+print(f"   [OK] Saved: Figure2_episode_length_trends.png")
 
 # Training Summary Table
 print("\n📋 Creating training summary table...")
@@ -213,7 +225,7 @@ training_summary_json = training_folder / "training_summary.json"
 with open(training_summary_json, 'w') as f:
     json.dump(training_summary, f, indent=2)
 
-print(f"   ✅ Saved: training_summary.csv & training_summary.json")
+print(f"   [OK] Saved: training_summary.csv & training_summary.json")
 
 # ============================================================================
 # TEST ANALYSIS
@@ -225,7 +237,7 @@ print(f"{'='*90}")
 
 test_summary = {}
 
-print("\n📊 Analyzing test performance...")
+print("\nAnalyzing test performance...")
 
 for setup_name in sorted(setups.keys()):
     if "test" in all_data[setup_name]:
@@ -238,18 +250,19 @@ for setup_name in sorted(setups.keys()):
             "avg_steps": 0.0,
             "avg_hp": 0.0,
             "crash_rate": 0.0,
-            "path_efficiency": 0.0
+            "path_efficiency": 0.0,
+            "explored_cells": 0.0
         }
         
-        # Success rate
+        # Success rate (handle both single and multi-agent)
         if 'VictimsRescued' in df.columns and 'TotalVictims' in df.columns:
-            success = (df['VictimsRescued'] == df['TotalVictims']).sum() / len(df) * 100
+            success = (df['VictimsRescued'] / df['TotalVictims'] * 100).mean()
             metrics["success_rate"] = float(success)
         elif 'TeamVictimsRescued' in df.columns and 'TotalVictims' in df.columns:
-            success = (df['TeamVictimsRescued'] == df['TotalVictims']).sum() / len(df) * 100
+            success = (df['TeamVictimsRescued'] / df['TotalVictims'] * 100).mean()
             metrics["success_rate"] = float(success)
         
-        # Avg victims
+        # Avg victims (handle both single and multi-agent)
         if 'VictimsRescued' in df.columns:
             metrics["avg_victims"] = float(df['VictimsRescued'].mean())
         elif 'TeamVictimsRescued' in df.columns:
@@ -259,21 +272,32 @@ for setup_name in sorted(setups.keys()):
         if 'StepsTaken' in df.columns:
             metrics["avg_steps"] = float(df['StepsTaken'].mean())
         
-        # Avg HP
+        # Avg HP (handle both single and multi-agent)
         if 'DroneHP' in df.columns:
             metrics["avg_hp"] = float(df['DroneHP'].mean())
         elif 'Agent0HP' in df.columns:
-            hp_cols = [col for col in df.columns if 'HP' in col]
-            metrics["avg_hp"] = float(df[hp_cols].mean().mean())
+            hp_cols = [col for col in df.columns if 'HP' in col and col.startswith('Agent')]
+            if hp_cols:
+                metrics["avg_hp"] = float(df[hp_cols].mean().mean())
         
-        # Path efficiency
+        # Path efficiency (use median to avoid outliers, handle agent efficiency)
         if 'PathEfficiency' in df.columns:
-            metrics["path_efficiency"] = float(df['PathEfficiency'].mean())
+            metrics["path_efficiency"] = float(df['PathEfficiency'].median())
+        else:
+            eff_cols = [col for col in df.columns if 'Efficiency' in col and col.startswith('Agent')]
+            if eff_cols:
+                metrics["path_efficiency"] = float(df[eff_cols].median().median())
+        
+        # Explored cells
+        if 'ExploredCells' in df.columns:
+            metrics["explored_cells"] = float(df['ExploredCells'].mean())
+        elif 'TeamExploredCells' in df.columns:
+            metrics["explored_cells"] = float(df['TeamExploredCells'].mean())
         
         test_summary[setup_name] = metrics
 
 # Figure 3: Test Performance Comparison
-print("\n📊 Creating test performance comparison plots...")
+print("\nCreating test performance comparison plots...")
 
 fig = plt.figure(figsize=(16, 12))
 gs = fig.add_gridspec(2, 2, hspace=0.3, wspace=0.3)
@@ -346,7 +370,7 @@ for bar in bars4:
 plt.tight_layout()
 fig.savefig(test_folder_out / "Figure3_test_performance_comparison.png", dpi=300, bbox_inches='tight')
 plt.close()
-print(f"   ✅ Saved: Figure3_test_performance_comparison.png")
+print(f"   [OK] Saved: Figure3_test_performance_comparison.png")
 
 # Test Summary Table
 print("\n📋 Creating test summary table...")
@@ -358,7 +382,7 @@ test_summary_json = test_folder_out / "test_summary.json"
 with open(test_summary_json, 'w') as f:
     json.dump(test_summary, f, indent=2)
 
-print(f"   ✅ Saved: test_summary.csv & test_summary.json")
+print(f"   [OK] Saved: test_summary.csv & test_summary.json")
 
 # ============================================================================
 # CROSS ANALYSIS: Training vs Test
@@ -368,7 +392,7 @@ print(f"\n{'='*90}")
 print("CROSS ANALYSIS: Training Progress vs Final Performance")
 print(f"{'='*90}")
 
-print("\n📊 Creating cross-analysis plots...")
+print("\nCreating cross-analysis plots...")
 
 fig = plt.figure(figsize=(16, 10))
 gs = fig.add_gridspec(2, 2, hspace=0.3, wspace=0.3)
@@ -445,7 +469,7 @@ for i, bar in enumerate(bars4):
 plt.tight_layout()
 fig.savefig(comparison_folder / "Figure4_cross_analysis.png", dpi=300, bbox_inches='tight')
 plt.close()
-print(f"   ✅ Saved: Figure4_cross_analysis.png")
+print(f"   [OK] Saved: Figure4_cross_analysis.png")
 
 # ============================================================================
 # GENERATE COMPREHENSIVE SUMMARY REPORT
@@ -580,7 +604,7 @@ report_path = report_folder / "COMPREHENSIVE_REPORT.md"
 with open(report_path, 'w') as f:
     f.write(report)
 
-print(f"   ✅ Saved: COMPREHENSIVE_REPORT.md")
+print(f"   [OK] Saved: COMPREHENSIVE_REPORT.md")
 
 # Save summary statistics
 summary_stats = {
@@ -596,7 +620,7 @@ stats_path = report_folder / "summary_statistics.json"
 with open(stats_path, 'w') as f:
     json.dump(summary_stats, f, indent=2)
 
-print(f"   ✅ Saved: summary_statistics.json")
+print(f"   [OK] Saved: summary_statistics.json")
 
 # ============================================================================
 # FINAL SUMMARY

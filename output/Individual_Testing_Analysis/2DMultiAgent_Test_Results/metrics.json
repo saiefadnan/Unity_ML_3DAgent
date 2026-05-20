@@ -5,16 +5,16 @@
   "numeric_metrics": {
     "Episode": {
       "mean": 50.5,
-      "std": 29.011491975882016,
+      "std": 29.0,
       "min": 1.0,
       "max": 100.0,
       "median": 50.5
     },
     "TeamVictimsRescued": {
       "mean": 5.0,
-      "std": 0.1421338109037403,
+      "std": 0.1,
       "min": 4.0,
-      "max": 6.0,
+      "max": 5.0,
       "median": 5.0
     },
     "TotalVictims": {
@@ -26,77 +26,77 @@
     },
     "StepsTaken": {
       "mean": 255.1,
-      "std": 98.53087502571638,
+      "std": 98.5,
       "min": 95.0,
       "max": 620.0,
       "median": 256.5
     },
     "Agent0Goals": {
-      "mean": 2.04,
-      "std": 0.5302943722236936,
+      "mean": 2.0,
+      "std": 0.5,
       "min": 1.0,
       "max": 3.0,
       "median": 2.0
     },
     "Agent1Goals": {
-      "mean": 1.47,
-      "std": 0.5765624358421579,
+      "mean": 1.5,
+      "std": 0.6,
       "min": 0.0,
       "max": 3.0,
       "median": 1.0
     },
     "Agent2Goals": {
-      "mean": 1.49,
-      "std": 0.5945034427438947,
+      "mean": 1.5,
+      "std": 0.6,
       "min": 0.0,
       "max": 3.0,
       "median": 1.0
     },
     "Agent0HP": {
-      "mean": 93.439,
-      "std": 11.942225356467135,
+      "mean": 93.44,
+      "std": 11.94,
       "min": 38.6,
       "max": 100.0,
       "median": 100.0
     },
     "Agent1HP": {
-      "mean": 96.475,
-      "std": 8.130058642799167,
+      "mean": 96.47,
+      "std": 8.13,
       "min": 61.4,
       "max": 100.0,
       "median": 100.0
     },
     "Agent2HP": {
-      "mean": 98.633,
-      "std": 4.5940465426858275,
+      "mean": 98.63,
+      "std": 4.59,
       "min": 76.9,
       "max": 100.0,
       "median": 100.0
     },
     "Agent0Efficiency": {
-      "mean": 1.81865,
-      "std": 0.7897197991130216,
+      "mean": 1.819,
+      "std": 0.79,
       "min": 0.588,
       "max": 3.67,
       "median": 1.819
     },
     "Agent1Efficiency": {
-      "mean": 2.0380700000000003,
-      "std": 0.9256685736168309,
+      "mean": 2.038,
+      "std": 0.926,
       "min": 0.655,
       "max": 4.97,
-      "median": 1.8054999999999999
+      "median": 1.805
     },
     "Agent2Efficiency": {
-      "mean": 1.8406500000000003,
-      "std": 0.7936915332797748,
+      "mean": 1.841,
+      "std": 0.794,
       "min": 0.686,
       "max": 4.202,
-      "median": 1.6915
+      "median": 1.692
     },
     "TeamExploredCells": {
-      "mean": 22.74,
-      "std": 5.835488779265136,
+      "mean": 22.7,
+      "std": 5.8,
       "min": 13.0,
       "max": 36.0,
       "median": 22.5

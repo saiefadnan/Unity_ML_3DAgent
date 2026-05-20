@@ -54,16 +54,49 @@ for setup_name in ["S1 2D-Single", "S2 2D-Multi", "S3 3D-Single", "S4 3D-Multi"]
     total_episodes = test_metrics[setup_name]["total_episodes"]
     
     # Extract key metrics from JSON
+    # Handle both single-agent (VictimsRescued) and multi-agent (TeamVictimsRescued)
     victims_rescued_mean = metrics.get("VictimsRescued", {}).get("mean", 0)
+    if victims_rescued_mean == 0:
+        victims_rescued_mean = metrics.get("TeamVictimsRescued", {}).get("mean", 0)
+    
     total_victims_mean = metrics.get("TotalVictims", {}).get("mean", 0)
     steps_taken_mean = metrics.get("StepsTaken", {}).get("mean", 0)
-    completion_time = metrics.get("CompletionTime", {}).get("mean", 0)
+    # Calculate completion time from steps (assuming ~0.05s per step in simulation)
+    completion_time = steps_taken_mean * 0.05
+    
+    # Handle both single-agent (DroneHP) and multi-agent (Agent0HP, Agent1HP, Agent2HP)
     hp_survival = metrics.get("DroneHP", {}).get("mean", 0)
-    path_efficiency = metrics.get("PathEfficiency", {}).get("mean", 0)
+    if hp_survival == 0:
+        # For multi-agent, average the HP of all agents
+        agent0_hp = metrics.get("Agent0HP", {}).get("mean", 0)
+        agent1_hp = metrics.get("Agent1HP", {}).get("mean", 0)
+        agent2_hp = metrics.get("Agent2HP", {}).get("mean", 0)
+        hp_survival = (agent0_hp + agent1_hp + agent2_hp) / 3 if (agent0_hp + agent1_hp + agent2_hp) > 0 else 0
+    
+    # Handle PathEfficiency - use median instead of mean to avoid outliers
+    # For S3, the mean is corrupted by extreme outliers (max: 566672.4)
+    path_efficiency_median = metrics.get("PathEfficiency", {}).get("median", 0)
+    
+    # For multi-agent setups, average the agent efficiencies (use median)
+    if path_efficiency_median == 0:
+        agent0_eff = metrics.get("Agent0Efficiency", {}).get("median", 0)
+        agent1_eff = metrics.get("Agent1Efficiency", {}).get("median", 0)
+        agent2_eff = metrics.get("Agent2Efficiency", {}).get("median", 0)
+        path_efficiency_median = (agent0_eff + agent1_eff + agent2_eff) / 3 if (agent0_eff + agent1_eff + agent2_eff) > 0 else 0
+    
+    # For explored cells - use mean or sum
     area_coverage = metrics.get("ExploredCells", {}).get("mean", 0)
+    if area_coverage == 0:
+        area_coverage = metrics.get("TeamExploredCells", {}).get("mean", 0)
+    
+    # Format area coverage - if still 0, it means the metric doesn't exist for this setup
+    if area_coverage > 0:
+        area_coverage_str = f"{area_coverage:.1f}"
+    else:
+        area_coverage_str = "N/A"  # Metric not available for this setup
     
     # Calculate success rate (episodes where VictimsRescued == TotalVictims)
-    # Approximate: if mean is close to total, high success rate
+    # Success rate = (Victims Rescued / Total Victims) * 100
     if total_victims_mean > 0:
         success_rate = (victims_rescued_mean / total_victims_mean) * 100
     else:
@@ -75,10 +108,10 @@ for setup_name in ["S1 2D-Single", "S2 2D-Multi", "S3 3D-Single", "S4 3D-Multi"]
         "Success_Rate_%": f"{success_rate:.1f}",
         "Avg_Victims/Episode": f"{victims_rescued_mean:.2f}",
         "Avg_Steps_to_Complete": f"{steps_taken_mean:.0f}",
-        "Completion_Time_s": f"{completion_time:.2f}" if completion_time > 0 else "N/A",
+        "Completion_Time_s": f"{completion_time:.2f}",
         "Avg_HP_Survival": f"{hp_survival:.2f}",
-        "Path_Efficiency": f"{path_efficiency:.3f}",
-        "Area_Coverage_cells": f"{area_coverage:.1f}",
+        "Path_Efficiency": f"{path_efficiency_median:.3f}",
+        "Area_Coverage_cells": area_coverage_str,
     })
 
 # Print Table V

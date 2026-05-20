@@ -5,14 +5,14 @@
   "numeric_metrics": {
     "Episode": {
       "mean": 50.5,
-      "std": 29.011491975882016,
+      "std": 29.0,
       "min": 1.0,
       "max": 100.0,
       "median": 50.5
     },
     "VictimsRescued": {
-      "mean": 3.89,
-      "std": 1.4487542541400495,
+      "mean": 3.9,
+      "std": 1.4,
       "min": 1.0,
       "max": 6.0,
       "median": 4.0
@@ -25,36 +25,36 @@
       "median": 6.0
     },
     "StepsTaken": {
-      "mean": 553.37,
-      "std": 477.33870098133195,
+      "mean": 553.4,
+      "std": 477.3,
       "min": 48.0,
       "max": 4001.0,
       "median": 466.0
     },
     "PathEfficiency": {
-      "mean": 0.24754,
-      "std": 0.05520913772998894,
+      "mean": 0.248,
+      "std": 0.055,
       "min": 0.152,
       "max": 0.393,
       "median": 0.24
     },
     "DistanceTraveled": {
-      "mean": 139.15809000000002,
-      "std": 19.334106093801275,
-      "min": 106.018,
-      "max": 192.706,
-      "median": 135.0385
+      "mean": 139.16,
+      "std": 19.33,
+      "min": 106.02,
+      "max": 192.71,
+      "median": 135.04
     },
     "DroneHP": {
-      "mean": -2.9430000000000005,
-      "std": 47.13516188429382,
+      "mean": -2.94,
+      "std": 47.14,
       "min": -270.1,
       "max": 100.0,
       "median": -2.75
     },
     "ExploredCells": {
-      "mean": 12.53,
-      "std": 5.309520703510828,
+      "mean": 12.5,
+      "std": 5.3,
       "min": 3.0,
       "max": 25.0,
       "median": 11.5

@@ -86,12 +86,37 @@ for csv_idx, csv_path in enumerate(csv_files, 1):
         for col in numeric_cols:
             col_data = df[col].dropna()
             if len(col_data) > 0:
+                # OUTLIER HANDLING: For PathEfficiency columns, remove extreme outliers
+                # (caused by division by zero when StepsTaken=0 or DistanceTraveled=0)
+                if col in ['PathEfficiency', 'Agent0Efficiency', 'Agent1Efficiency', 'Agent2Efficiency']:
+                    # Remove values that are unreasonably high (e.g., > 100 for efficiency)
+                    col_data_clean = col_data[col_data <= 10.0]  # Cap at 10.0 (reasonable efficiency max)
+                    if len(col_data_clean) == 0:
+                        col_data_clean = col_data  # Fallback if all values are outliers
+                else:
+                    col_data_clean = col_data
+                
+                # Determine decimal places based on metric type (thesis-ready formatting)
+                if col in ['Episode', 'VictimsRescued', 'TotalVictims', 'StepsTaken', 'ExploredCells', 
+                           'Agent0Goals', 'Agent1Goals', 'Agent2Goals', 'TeamVictimsRescued', 'TeamExploredCells']:
+                    # Count metrics - round to 1 decimal
+                    decimals = 1
+                elif col in ['PathEfficiency', 'Agent0Efficiency', 'Agent1Efficiency', 'Agent2Efficiency']:
+                    # Efficiency/ratio - 3 decimals
+                    decimals = 3
+                elif col in ['DistanceTraveled', 'DroneHP', 'Agent0HP', 'Agent1HP', 'Agent2HP']:
+                    # Distance/HP - 2 decimals
+                    decimals = 2
+                else:
+                    # Default - 2 decimals
+                    decimals = 2
+                
                 metrics["numeric_metrics"][col] = {
-                    "mean": float(col_data.mean()),
-                    "std": float(col_data.std()),
-                    "min": float(col_data.min()),
-                    "max": float(col_data.max()),
-                    "median": float(col_data.median())
+                    "mean": round(float(col_data_clean.mean()), decimals),
+                    "std": round(float(col_data_clean.std()), decimals),
+                    "min": round(float(col_data_clean.min()), decimals),
+                    "max": round(float(col_data_clean.max()), decimals),
+                    "median": round(float(col_data_clean.median()), decimals)
                 }
         
         all_metrics[setup_name] = metrics
@@ -218,16 +243,29 @@ for csv_idx, csv_path in enumerate(csv_files, 1):
         # ===== SAVE STATISTICS CSV =====
         print(f"📋 Generating statistics table...")
         
-        summary_df = pd.DataFrame({
-            col: [
-                metrics["numeric_metrics"][col]["mean"],
-                metrics["numeric_metrics"][col]["std"],
-                metrics["numeric_metrics"][col]["min"],
-                metrics["numeric_metrics"][col]["max"],
-                metrics["numeric_metrics"][col]["median"]
+        # Create summary with proper formatting
+        summary_data = {}
+        for col in numeric_cols:
+            # Determine decimal places based on metric type (thesis-ready formatting)
+            if col in ['Episode', 'VictimsRescued', 'TotalVictims', 'StepsTaken', 'ExploredCells', 
+                       'Agent0Goals', 'Agent1Goals', 'Agent2Goals', 'TeamVictimsRescued', 'TeamExploredCells']:
+                decimals = 1
+            elif col in ['PathEfficiency', 'Agent0Efficiency', 'Agent1Efficiency', 'Agent2Efficiency']:
+                decimals = 3
+            elif col in ['DistanceTraveled', 'DroneHP', 'Agent0HP', 'Agent1HP', 'Agent2HP']:
+                decimals = 2
+            else:
+                decimals = 2
+            
+            summary_data[col] = [
+                round(metrics["numeric_metrics"][col]["mean"], decimals),
+                round(metrics["numeric_metrics"][col]["std"], decimals),
+                round(metrics["numeric_metrics"][col]["min"], decimals),
+                round(metrics["numeric_metrics"][col]["max"], decimals),
+                round(metrics["numeric_metrics"][col]["median"], decimals)
             ]
-            for col in numeric_cols
-        }, index=['Mean', 'Std Dev', 'Min', 'Max', 'Median'])
+        
+        summary_df = pd.DataFrame(summary_data, index=['Mean', 'Std Dev', 'Min', 'Max', 'Median'])
         
         summary_path = setup_folder / "metrics_summary.csv"
         summary_df.to_csv(summary_path)
