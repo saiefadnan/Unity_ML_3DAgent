@@ -11,7 +11,7 @@ public class DroneEnvironmentConfig : MonoBehaviour
     public int obstacleCount = 0;
     public float episodeLength = 5000f;
     public float spawnHeight = 10f;
-    public float successRadius = 1f;
+    public float successRadius = 4f;
 
     [Header("References")]
     public GameObject victimPrefab;
@@ -26,9 +26,8 @@ public class DroneEnvironmentConfig : MonoBehaviour
     public int victimCount = 10;
 
     [Header("Environment Bounds")]
-    public Vector3 arenaSize = new Vector3(50f, 20f, 50f);
-    public Vector3 arenaCenter = Vector3.zero;
-
+    public Vector3 arenaSize = new Vector3(160, 40f, 160f);
+    public Vector3 arenaCenter = new Vector3(0f, 20f, 0f);
     public GameObject[] activeObstacles;
     public GameObject[] activeVictims;
     private EnvironmentParameters envParams;

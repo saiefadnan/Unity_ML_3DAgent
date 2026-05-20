@@ -14,7 +14,7 @@ public class DroneEnvironmentConfig : MonoBehaviour
 
     public float episodeLength = 5000f;
     public float spawnHeight = 10f;
-    public float successRadius = 1f;
+    public float successRadius = 4f;
 
     [Header("References")]
     public Transform drone;
@@ -27,9 +27,8 @@ public class DroneEnvironmentConfig : MonoBehaviour
     public int victimCount = 10;          // Number of victims to spawn each episode
 
     [Header("Environment Bounds")]
-    public Vector3 arenaSize = new Vector3(50f, 20f, 50f);
-    public Vector3 arenaCenter = Vector3.zero;
-
+    public Vector3 arenaSize = new Vector3(160f, 40f, 160f);
+    public Vector3 arenaCenter = new Vector3(0f, 20f, 0f);
     private GameObject[] activeObstacles;
     private GameObject[] activeVictims;      // Spawned victim instances
     private EnvironmentParameters envParams;

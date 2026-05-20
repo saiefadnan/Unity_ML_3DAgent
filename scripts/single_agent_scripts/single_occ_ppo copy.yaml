@@ -16,9 +16,9 @@ behaviors:
       normalize: true
       hidden_units: 256
       num_layers: 2
-      # NO vis_encode_type (no ResNet - YOLO runs externally via side-channel)
+      # NO vis_encode_type
       # NO memory block (no LSTM)
-      # Obs size: 21 (was 20 — GPS victim 4obs replaced by YOLO 5obs)
+      # Obs size: 20
 
     reward_signals:
       extrinsic:

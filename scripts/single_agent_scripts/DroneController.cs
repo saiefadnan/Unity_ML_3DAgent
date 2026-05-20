@@ -9,15 +9,15 @@ using System;
 
 public class DroneController : Agent
 {
-    private Rigidbody rb;
-    public float thrust = 15f;
+     private Rigidbody rb;
+    public float thrust = 8f;
     public float maxTiltAngle = 30f;
     public float tiltSpeed = 8f;
-    public float maxYawSpeed = 120f;
+    public float maxYawSpeed = 200f;
     public float hoverForce = 9.81f;
-    public float drag = 2f;
-    public float angularDrag = 5f;
-    public float maxVelocity = 15f;
+    public float drag = 1f;
+    public float angularDrag = 1f;
+    public float maxVelocity = 30f;
     public bool test = false;
     public bool recordEvaluationMetrics = false;
     public Animator[] fanAnimators;
