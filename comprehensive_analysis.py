@@ -12,6 +12,10 @@ import json
 import sys
 from scipy import stats
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+
 # Setup paths
 train_reward_folder = Path("allData/train/env-cumulative_reward")
 train_episode_folder = Path("allData/train/env-episode_length")
@@ -222,7 +226,7 @@ training_df = pd.DataFrame(training_summary).T
 training_df.to_csv(training_folder / "training_summary.csv")
 
 training_summary_json = training_folder / "training_summary.json"
-with open(training_summary_json, 'w') as f:
+with open(training_summary_json, 'w', encoding='utf-8') as f:
     json.dump(training_summary, f, indent=2)
 
 print(f"   [OK] Saved: training_summary.csv & training_summary.json")
@@ -379,7 +383,7 @@ test_df = pd.DataFrame(test_summary).T
 test_df.to_csv(test_folder_out / "test_summary.csv")
 
 test_summary_json = test_folder_out / "test_summary.json"
-with open(test_summary_json, 'w') as f:
+with open(test_summary_json, 'w', encoding='utf-8') as f:
     json.dump(test_summary, f, indent=2)
 
 print(f"   [OK] Saved: test_summary.csv & test_summary.json")
@@ -601,7 +605,7 @@ report_folder = output_folder / "04_Summary_Report"
 report_folder.mkdir(exist_ok=True, parents=True)
 
 report_path = report_folder / "COMPREHENSIVE_REPORT.md"
-with open(report_path, 'w') as f:
+with open(report_path, 'w', encoding='utf-8') as f:
     f.write(report)
 
 print(f"   [OK] Saved: COMPREHENSIVE_REPORT.md")
@@ -617,7 +621,7 @@ summary_stats = {
 }
 
 stats_path = report_folder / "summary_statistics.json"
-with open(stats_path, 'w') as f:
+with open(stats_path, 'w', encoding='utf-8') as f:
     json.dump(summary_stats, f, indent=2)
 
 print(f"   [OK] Saved: summary_statistics.json")

@@ -11,95 +11,95 @@
       "median": 50.5
     },
     "TeamVictimsRescued": {
-      "mean": 5.0,
+      "mean": 6.0,
       "std": 0.1,
-      "min": 4.0,
-      "max": 5.0,
-      "median": 5.0
+      "min": 6.0,
+      "max": 7.0,
+      "median": 6.0
     },
     "TotalVictims": {
-      "mean": 5.0,
+      "mean": 6.0,
       "std": 0.0,
-      "min": 5.0,
-      "max": 5.0,
-      "median": 5.0
+      "min": 6.0,
+      "max": 6.0,
+      "median": 6.0
     },
     "StepsTaken": {
-      "mean": 255.1,
-      "std": 98.5,
+      "mean": 265.6,
+      "std": 84.1,
       "min": 95.0,
-      "max": 620.0,
-      "median": 256.5
+      "max": 483.0,
+      "median": 272.0
     },
     "Agent0Goals": {
-      "mean": 2.0,
-      "std": 0.5,
+      "mean": 2.5,
+      "std": 0.7,
       "min": 1.0,
-      "max": 3.0,
+      "max": 4.0,
       "median": 2.0
     },
     "Agent1Goals": {
-      "mean": 1.5,
+      "mean": 1.6,
       "std": 0.6,
       "min": 0.0,
       "max": 3.0,
-      "median": 1.0
+      "median": 2.0
     },
     "Agent2Goals": {
-      "mean": 1.5,
-      "std": 0.6,
+      "mean": 2.0,
+      "std": 0.7,
       "min": 0.0,
-      "max": 3.0,
-      "median": 1.0
+      "max": 4.0,
+      "median": 2.0
     },
     "Agent0HP": {
-      "mean": 93.44,
-      "std": 11.94,
-      "min": 38.6,
-      "max": 100.0,
-      "median": 100.0
-    },
-    "Agent1HP": {
-      "mean": 96.47,
-      "std": 8.13,
+      "mean": 95.23,
+      "std": 9.59,
       "min": 61.4,
       "max": 100.0,
       "median": 100.0
     },
+    "Agent1HP": {
+      "mean": 97.2,
+      "std": 7.85,
+      "min": 58.8,
+      "max": 100.0,
+      "median": 100.0
+    },
     "Agent2HP": {
-      "mean": 98.63,
-      "std": 4.59,
-      "min": 76.9,
+      "mean": 95.8,
+      "std": 10.01,
+      "min": 39.8,
       "max": 100.0,
       "median": 100.0
     },
     "Agent0Efficiency": {
-      "mean": 1.819,
-      "std": 0.79,
-      "min": 0.588,
-      "max": 3.67,
-      "median": 1.819
+      "mean": 1.81,
+      "std": 0.744,
+      "min": 0.771,
+      "max": 4.452,
+      "median": 1.773
     },
     "Agent1Efficiency": {
-      "mean": 2.038,
-      "std": 0.926,
-      "min": 0.655,
-      "max": 4.97,
-      "median": 1.805
+      "mean": 1.987,
+      "std": 0.924,
+      "min": 0.61,
+      "max": 5.677,
+      "median": 1.761
     },
     "Agent2Efficiency": {
-      "mean": 1.841,
-      "std": 0.794,
-      "min": 0.686,
-      "max": 4.202,
-      "median": 1.692
+      "mean": 1.777,
+      "std": 0.751,
+      "min": 0.702,
+      "max": 5.592,
+      "median": 1.643
     },
     "TeamExploredCells": {
-      "mean": 22.7,
-      "std": 5.8,
-      "min": 13.0,
-      "max": 36.0,
-      "median": 22.5
+      "mean": 23.3,
+      "std": 4.9,
+      "min": 14.0,
+      "max": 34.0,
+      "median": 24.0
     }
   }
 }

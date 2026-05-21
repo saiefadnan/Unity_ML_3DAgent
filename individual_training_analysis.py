@@ -35,8 +35,8 @@ print("=" * 90)
 # Setup names and file mappings
 setups = {
     "S1_2D-Single": {
-        "train_reward": "2DAgent_Test_Results.csv",
-        "train_episode": "2DAgent_Test_Results.csv",
+        "train_reward": "2DAgent_Train_Results.csv",
+        "train_episode": "2DAgent_Train_Results.csv",
         "name": "S1 2D-Single Agent"
     },
     "S2_2D-Multi": {
@@ -45,13 +45,13 @@ setups = {
         "name": "S2 2D-Multi Agent"
     },
     "S3_3D-Single": {
-        "train_reward": "3DAgent_Test_Results.csv",
-        "train_episode": "3DAgent_Test_Results.csv",
+        "train_reward": "3DAgent_Train_Results.csv",
+        "train_episode": "3DAgent_Train_Results.csv",
         "name": "S3 3D-Single Agent"
     },
     "S4_3D-Multi": {
-        "train_reward": "3DMultiAgent_Test_Results.csv",
-        "train_episode": "3DMultiAgent_Test_Results.csv",
+        "train_reward": "3DMultiAgent_Train_Results.csv",
+        "train_episode": "3DMultiAgent_Train_Results.csv",
         "name": "S4 3D-Multi Agent"
     }
 }

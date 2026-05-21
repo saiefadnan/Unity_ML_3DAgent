@@ -4,10 +4,10 @@ TABLE V: EVALUATION RESULTS ACROSS 4 SETUPS
 Metric                         S1 2D-Single         S2 2D-Multi          S3 3D-Single         S4 3D-Multi         
 ----------------------------------------------------------------------------------------------------
 Success Rate (%)               65.0                 100.0                48.3                 56.7                
-Avg Victims / Episode          3.90                 5.00                 2.90                 3.40                
-Avg Steps to Complete          553                  255                  2678                 4325                
-Completion Time (s)            27.67                12.76                133.89               216.27              
-Avg HP Survival                -2.94                96.18                247.63               406.04              
-Path Efficiency                0.240                1.772                1.203                1.300               
-Area Coverage (cells)          12.5                 22.7                 73.6                 124.5               
+Avg Victims / Episode          3.90                 6.00                 2.90                 3.40                
+Avg Steps to Complete          553                  266                  2678                 4325                
+Completion Time (s)            27.67                13.28                133.89               216.27              
+Avg HP Survival                -2.94                96.08                247.63               406.04              
+Path Efficiency                0.240                1.726                1.203                1.300               
+Area Coverage (cells)          12.5                 23.3                 73.6                 124.5               
 ----------------------------------------------------------------------------------------------------

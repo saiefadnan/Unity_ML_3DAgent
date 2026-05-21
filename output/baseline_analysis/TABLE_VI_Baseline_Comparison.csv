@@ -5,10 +5,10 @@ S1 2D-Single,Avg Steps (lower better),553,4500,+88%
 S1 2D-Single,HP Survival,-2.94,50.00,-106%
 S1 2D-Single,Path Efficiency,0.240,0.080,+200%
 S2 2D-Multi,Success Rate (%),100.0,5.0,+1900%
-S2 2D-Multi,Avg Victims/Episode,5.00,1.20,+317%
-S2 2D-Multi,Avg Steps (lower better),255,3500,+93%
-S2 2D-Multi,HP Survival,96.18,75.00,+28%
-S2 2D-Multi,Path Efficiency,1.772,0.120,+1377%
+S2 2D-Multi,Avg Victims/Episode,6.00,1.20,+400%
+S2 2D-Multi,Avg Steps (lower better),266,3500,+92%
+S2 2D-Multi,HP Survival,96.08,75.00,+28%
+S2 2D-Multi,Path Efficiency,1.726,0.120,+1338%
 S3 3D-Single,Success Rate (%),48.3,0.5,+9560%
 S3 3D-Single,Avg Victims/Episode,2.90,0.30,+867%
 S3 3D-Single,Avg Steps (lower better),2678,4800,+44%

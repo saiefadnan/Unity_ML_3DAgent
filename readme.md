@@ -58,12 +58,12 @@ This thesis compares single-agent and multi-agent PPO performance across 2D and 
 ## PHASE 2: 3D Single Agent PPO (IN PROGRESS)
 
 ### 2.1 Environment Design
-- 3D arena: 50x50x20 units
+- 3D arena: 160(x) x 40(y) x 160(z) units (center shifted to 0, 20, 0)
 - Drone with Angle Mode physics controller (thrust, tilt compensation)
 - Victim prefabs spawned at curriculum-defined distances
 - Obstacle prefabs with tag-based collision detection
 - DroneEnvironmentConfig managing spawn, curriculum, and victim rescue logic
-- Camera sensor: 84x84 RGB, nature_cnn encoder, LSTM memory
+- Raycast sensor: 51-ray horizontal ring (360 degrees), no visual CNN, no LSTM memory
 
 ### 2.2 Agent Observations (20 total)
 - Position normalized by arena size (3)
@@ -101,17 +101,14 @@ This thesis compares single-agent and multi-agent PPO performance across 2D and 
 ```yaml
 trainer_type: ppo
 batch_size: 512
-buffer_size: 20480
+buffer_size: 10240
 learning_rate: 0.0003
-beta: 0.01
+beta: 0.005
 epsilon: 0.2
 lambd: 0.95
 num_epoch: 3
-vis_encode_type: nature_cnn
-memory_size: 256
-sequence_length: 128
-curiosity strength: 0.005
-min_lesson_length: 100 (hover), 200 (navigation)
+curiosity strength: 0.01
+min_lesson_length: 20 (hover)
 ```
 
 ### 2.6 Training Steps
@@ -256,11 +253,7 @@ What it proves: progressive difficulty is necessary for convergence.
 Remove GiveScanningRewards() call from OnActionReceived.
 What it proves: movement incentive reduces idle behavior.
 
-### Ablation 4 — No LSTM (plain MLP)
-Remove memory block from yaml network settings.
-What it proves: LSTM aids multi-victim sequential search.
-
-### Ablation 5 — No Curiosity
+### Ablation 4 — No Curiosity
 Set curiosity strength to 0.0 in yaml.
 What it proves: curiosity aids exploration in large 3D arena.
 
@@ -272,7 +265,6 @@ What it proves: curiosity aids exploration in large 3D arena.
 | No GPS hints | | | | |
 | No curriculum | | | | |
 | No movement reward | | | | |
-| No LSTM | | | | |
 | No curiosity | | | | |
 
 Priority if time is limited: Ablation 1 and 2 are most important. 3, 4, 5 are optional.
@@ -372,7 +364,7 @@ Progressive Complexity in Drone-Based Search and Rescue: A Comparative Study of 
 - Drone physics: Angle Mode, thrust, tilt compensation
 - Observation space: all 20 observations with rationale
 - Action space: 4 continuous actions
-- Camera sensor: 84x84, nature_cnn, LSTM
+- Perception: 51-ray horizontal Raycast (Ground, Wall, Obstacle, Victim)
 - Reward function: full description with table
 - Curriculum: 9 stages, driver/follower design
 
@@ -494,9 +486,8 @@ Progressive Complexity in Drone-Based Search and Rescue: A Comparative Study of 
 
 ## CHECKLIST BEFORE EACH 3D TRAINING RUN
 
-- [ ] visibilityMask set in Inspector (Obstacle + Wall only, NOT Ground)
-- [ ] cameraFOV = 100 in DroneController Inspector
-- [ ] Camera sensor stack size = 1
+- [ ] Ray Layer Mask set in Inspector (Obstacle, Wall, Ground, Victim)
+- [ ] Ray Perception Sensor configured with 51 rays (25 per direction)
 - [ ] Vector observation stacked = 1
 - [ ] Dead code removed from OnActionReceived
 - [ ] recordEvaluationMetrics = true for final test runs
@@ -513,11 +504,11 @@ Progressive Complexity in Drone-Based Search and Rescue: A Comparative Study of 
 |---|---|
 | 2D before 3D | Progressive complexity — simpler environment validates approach |
 | Angle Mode instead of direct force | Realistic drone behavior |
-| Full GPS hints instead of vision-gated | Stability and trainability — camera still present for supplementary context |
-| nature_cnn over resnet | Faster training, sufficient for 84x84 |
-| LSTM over frame stacking | Better temporal memory for multi-victim search |
-| Curiosity strength 0.005 | Prevent random spinning, aid exploration |
-| Camera FOV 100 degrees | Matches actual Unity camera setting |
+| Full GPS hints instead of vision-gated | Stability and trainability |
+| Removed Visual Encoders (No CNN / No ResNet) | Faster training, completely replaced by 51-ray Raycast data |
+| No LSTM / Removed memory block | Raycast array + GPS variables provide sufficient spatial encoding without LSTM overhead |
+| Curiosity strength 0.01 | Keep low to prevent random spinning and overriding dense reward guidance |
+| Ray Perception Sensor 51-Rays | Provides 360-degree spatial awareness without CNN processing |
 | Victim reservation system | Prevents double-rescue in multi-agent |
 | Urgency multiplier in progress reward | Encourages pursuing remaining victims rather than hovering |
 | Scaled timeout penalty | Leaving victims unrescued costs proportionally more |

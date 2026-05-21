@@ -11,6 +11,10 @@ from pathlib import Path
 import json
 import sys
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+
 # Setup paths
 alldata_folder = Path("allData/test")
 output_folder = Path("output")
@@ -268,12 +272,12 @@ for csv_idx, csv_path in enumerate(csv_files, 1):
         summary_df = pd.DataFrame(summary_data, index=['Mean', 'Std Dev', 'Min', 'Max', 'Median'])
         
         summary_path = setup_folder / "metrics_summary.csv"
-        summary_df.to_csv(summary_path)
+        summary_df.to_csv(summary_path, encoding='utf-8')
         print(f"   ✅ Saved: {summary_path.relative_to(output_folder)}")
         
         # ===== SAVE METRICS JSON =====
         metrics_path = setup_folder / "metrics.json"
-        with open(metrics_path, 'w') as f:
+        with open(metrics_path, 'w', encoding='utf-8') as f:
             json.dump(metrics, f, indent=2)
         print(f"   ✅ Saved: {metrics_path.relative_to(output_folder)}")
         
@@ -296,15 +300,24 @@ if len(all_dataframes) > 1:
     for df in all_dataframes.values():
         common_numeric &= set(df.select_dtypes(include=[np.number]).columns)
     
-    common_numeric = sorted(list(common_numeric))[:6]  # Limit to 6 for clarity
+    varying_common_numeric = []
+    for col in sorted(list(common_numeric)):
+        all_col_data = pd.concat(
+            [df[col].dropna() for df in all_dataframes.values()],
+            ignore_index=True
+        )
+        if len(all_col_data) > 0 and all_col_data.max() != all_col_data.min():
+            varying_common_numeric.append(col)
+
+    common_numeric = varying_common_numeric[:6]  # Limit to 6 for clarity
     
     if common_numeric:
         print(f"\n🔄 Creating cross-dataset comparison for {len(common_numeric)} common metrics...")
         
-        n_cols = 3
+        n_cols = min(3, len(common_numeric))
         n_rows = (len(common_numeric) + n_cols - 1) // n_cols
         
-        fig, axes = plt.subplots(n_rows, n_cols, figsize=(18, 5 * n_rows))
+        fig, axes = plt.subplots(n_rows, n_cols, figsize=(6 * n_cols, 5 * n_rows))
         if n_rows == 1 and n_cols == 1:
             axes = np.array([[axes]])
         elif n_rows == 1 or n_cols == 1:
@@ -323,13 +336,20 @@ if len(all_dataframes) > 1:
         
         for plot_idx, col in enumerate(common_numeric):
             ax = axes[plot_idx]
+            all_col_data = pd.concat(
+                [df[col].dropna() for df in all_dataframes.values()],
+                ignore_index=True
+            )
+            global_min = all_col_data.min()
+            global_range = all_col_data.max() - global_min
             
             for dataset_idx, (setup_name, df) in enumerate(all_dataframes.items()):
                 col_data = df[col].dropna()
-                if col_data.max() - col_data.min() != 0:
-                    normalized = (col_data - col_data.min()) / (col_data.max() - col_data.min())
+                if global_range != 0:
+                    normalized = (col_data - global_min) / global_range
                 else:
-                    normalized = col_data
+                    # Constant metrics still need to appear inside the normalized 0-1 axis.
+                    normalized = pd.Series(0.5, index=col_data.index)
                 
                 x_vals = range(len(normalized))
                 ax.plot(x_vals, normalized, label=setup_name, alpha=0.8, linewidth=2.5,
@@ -347,9 +367,13 @@ if len(all_dataframes) > 1:
             axes[idx].axis('off')
         
         comparison_path = output_folder / "Figure4_cross_dataset_comparison.png"
+        extras_comparison_path = output_folder / "extras_analysis" / "dataset_comparison.png"
+        extras_comparison_path.parent.mkdir(exist_ok=True, parents=True)
         plt.tight_layout()
         plt.savefig(comparison_path, dpi=300, bbox_inches='tight')
+        plt.savefig(extras_comparison_path, dpi=300, bbox_inches='tight')
         plt.close()
+        print(f"Saved: {extras_comparison_path.relative_to(output_folder)}")
         print(f"✅ Saved: {comparison_path.relative_to(output_folder)}")
 
 # ============================================================================
@@ -413,7 +437,7 @@ for setup_name in sorted(all_metrics.keys()):
         captions_doc += f"- ... and {len(metrics['numeric_metrics']) - 5} more metrics\n"
 
 captions_path = output_folder / "FIGURE_CAPTIONS.md"
-with open(captions_path, 'w') as f:
+with open(captions_path, 'w', encoding='utf-8') as f:
     f.write(captions_doc)
 
 print(f"✅ Saved: {captions_path.relative_to(output_folder)}")

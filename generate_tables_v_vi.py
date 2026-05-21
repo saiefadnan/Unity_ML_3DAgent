@@ -6,6 +6,11 @@ in exact IEEE paper format for thesis submission.
 import json
 import pandas as pd
 from pathlib import Path
+import sys
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
 
 output_folder = Path("output")
 
@@ -29,7 +34,7 @@ test_metrics = {}
 for setup_name, metrics_path in test_datasets.items():
     full_path = output_folder / metrics_path
     if full_path.exists():
-        with open(full_path, 'r') as f:
+        with open(full_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
             test_metrics[setup_name] = data
             print(f"✅ Loaded metrics for {setup_name}")
@@ -139,12 +144,12 @@ print("-" * 100)
 # Save Table V as CSV
 table_v_df = pd.DataFrame(table_v_data)
 table_v_csv = output_folder / "TABLE_V_Test_Results.csv"
-table_v_df.to_csv(table_v_csv, index=False)
+table_v_df.to_csv(table_v_csv, index=False, encoding='utf-8')
 print(f"\n✅ Saved: TABLE_V_Test_Results.csv")
 
 # Save Table V as formatted text
 table_v_text = output_folder / "TABLE_V_Test_Results.txt"
-with open(table_v_text, 'w') as f:
+with open(table_v_text, 'w', encoding='utf-8') as f:
     f.write("TABLE V: EVALUATION RESULTS ACROSS 4 SETUPS\n")
     f.write("=" * 100 + "\n\n")
     f.write(f"{'Metric':<30} {'S1 2D-Single':<20} {'S2 2D-Multi':<20} {'S3 3D-Single':<20} {'S4 3D-Multi':<20}\n")
@@ -306,12 +311,12 @@ print("-" * 100)
 # Save Table VI as CSV
 table_vi_df = pd.DataFrame(table_vi_data)
 table_vi_csv = output_folder / "TABLE_VI_Baseline_Comparison.csv"
-table_vi_df.to_csv(table_vi_csv, index=False)
+table_vi_df.to_csv(table_vi_csv, index=False, encoding='utf-8')
 print(f"\n✅ Saved: TABLE_VI_Baseline_Comparison.csv")
 
 # Save Table VI as formatted text
 table_vi_text = output_folder / "TABLE_VI_Baseline_Comparison.txt"
-with open(table_vi_text, 'w') as f:
+with open(table_vi_text, 'w', encoding='utf-8') as f:
     f.write("TABLE VI: TRAINED MODEL VS RANDOM BASELINE COMPARISON\n")
     f.write("=" * 100 + "\n\n")
     f.write(f"{'Setup':<20} {'Metric':<30} {'Trained PPO':<20} {'Random Baseline':<20} {'Improvement':<20}\n")
