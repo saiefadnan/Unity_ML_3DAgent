@@ -123,6 +123,7 @@ tensorboard --logdir results
 ├── 📂 output/                # Comprehensive analysis reports, thesis figures, and metric summaries
 ├── 📂 results/               # Trained models (.onnx checkpoints) and TensorBoard logs
 └── 📂 scripts/               # C# Unity controllers, configs, and Python analysis tools
+    ├── 📂 analysis_scripts/      # Python evaluation, batch metrics extraction, and plotting tools
     ├── 📂 multi_agent_scripts/   # Multi-agent C# scripts (DroneController, DroneEnvironmentConfig)
     └── 📂 single_agent_scripts/  # Single-agent C# scripts
 ```
