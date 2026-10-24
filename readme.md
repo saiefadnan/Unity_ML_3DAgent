@@ -3,7 +3,7 @@
 _A Unity ML-Agents project focused on training autonomous quadcopters for Search and Rescue (SAR) missions in complex 3D environments with 6-DOF physics, 51-ray LiDAR proximity sensing, and cooperative multi-agent swarming._
 
 > [!NOTE]
-> This repository contains the **3D** phase of the research project. For the initial 2D baseline environment and models, visit [Unity_ML_Agent](../Unity_ML_Agent). For the overarching research narrative, experimental matrix, and comparative analysis plan, see [Thesis Roadmap](./THESIS_ROADMAP.md).
+> This repository contains the **3D** phase of the research project. For the initial 2D baseline environment and models, visit [Unity_ML_Agent](https://github.com/saiefadnan/Unity_ML_Agent). For the overarching research narrative, experimental matrix, and comparative analysis plan, see [Thesis Roadmap](./THESIS_ROADMAP.md).
 
 ---
 
@@ -62,7 +62,7 @@ _A Unity ML-Agents project focused on training autonomous quadcopters for Search
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/saiefadnan/Unity_ML_3DAgent.git
 cd Unity_ML_3DAgent
 
 # Set up Python virtual environment
@@ -132,17 +132,22 @@ tensorboard --logdir results
 
 ## Performance Summary
 
-Across 100 evaluation episodes at mid-difficulty:
+Evaluation results across 100 benchmark episodes (canonical metrics from [Table V](./output/result/TABLE_V_Test_Results.txt)):
 
 | Metric | S1 (2D Single) | S2 (2D Multi) | S3 (3D Single) | S4 (3D Multi) |
 |---|---|---|---|---|
-| **Success Rate (%)** | 65.0% | 100.0% | 48.3% | **56.7%** |
-| **Avg Victims Rescued** | 3.90 / 6 | 5.00 / 5 | 2.90 / 5 | **3.40 / 5** |
-| **Avg HP Survival (out of 500)** | -2.94 | 96.18 | 247.63 | **406.04** |
-| **Path Efficiency** | 0.240 | 1.772 | 1.203 | **1.300** |
-| **Baseline Improvement** | — | — | +9560% | +3680% |
+| **Mission Success Rate (%)** | 65.0% | 100.0% | 48.3% | **56.7%** |
+| **Avg Victims Rescued** | 3.90 / 6 | 6.00 / 6 | 2.90 / 6 | **3.40 / 6** |
+| **Avg Steps to Complete** | 553 | 266 | 2678 | 4325 |
+| **Completion Time (s)** | 27.67 s | 13.28 s | 133.89 s | 216.27 s |
+| **Avg HP Survival (out of 500)** | -2.94 | 96.08 | 247.63 | **406.04** |
+| **Path Efficiency** | 0.240 | 1.726 | 1.203 | **1.300** |
+| **Area Coverage (cells)** | 12.5 | 23.3 | 73.6 | **124.5** |
+| **Baseline Improvement (vs. Random)**¹ | +3150% | +1900% | +9560% | **+3680%** |
 
-> S4 multi-agent coordination improves survival significantly (+64% HP over S3) and elevates mission success in complex 3D obstacle courses while distributing search workload.
+> ¹ **Baseline Context**: Improvement percentages measure trained PPO policy performance relative to an untrained **Random Action Policy** baseline (where random control inputs yielded 2.0% success for S1, 5.0% for S2, 0.5% for S3, and 1.5% for S4 due to severe crash frequency in complex environments). Full baseline comparison details are available in [Table VI](./output/baseline_analysis/TABLE_VI_Baseline_Comparison.txt).
+>
+> **Key Finding**: S4 multi-agent swarming improves drone survival by **+64.0%** over single-agent 3D (Avg HP: 406.04 vs 247.63) and boosts mission success rate to **56.7%** while distributing spatial search volume in cluttered 3D arenas.
 
 ---
 
