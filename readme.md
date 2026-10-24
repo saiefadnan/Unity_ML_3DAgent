@@ -62,10 +62,10 @@ To inspect the trained 3D drone models in action, use `mlagents-learn` with `--i
 
 ```powershell
 # Run the Single-Agent (S3) trained model (drone3d_v15)
-mlagents-learn config3D/3Dsingle_occ_ppo.yaml --run-id=drone3d_v15 --inference
+mlagents-learn config3D/single_occ_ppo.yaml --run-id=drone3d_v15 --inference
 
 # Run the Multi-Agent (S4) trained model (multi_drone3d_v1)
-mlagents-learn config3D/3Dmulti_occ_ppo.yaml --run-id=multi_drone3d_v1 --inference
+mlagents-learn config3D/multi_occ_ppo.yaml --run-id=multi_drone3d_v1 --inference
 ```
 
 ### Training a New Model
@@ -74,10 +74,10 @@ To start training a new 3D model with curriculum learning:
 
 ```powershell
 # Train a new Single-Agent (S3) model
-mlagents-learn config3D/3Dsingle_occ_ppo.yaml --run-id=New3DSingleRun --train
+mlagents-learn config3D/single_occ_ppo.yaml --run-id=New3DSingleRun --train
 
 # Train a new Multi-Agent (S4) model
-mlagents-learn config3D/3Dmulti_occ_ppo.yaml --run-id=New3DMultiRun --train
+mlagents-learn config3D/multi_occ_ppo.yaml --run-id=New3DMultiRun --train
 ```
 
 Monitor training performance live via TensorBoard:
@@ -93,18 +93,18 @@ tensorboard --logdir results
 /
 ├── 📄 README.md              # You are here (3D SAR Project Overview)
 ├── 📄 THESIS_ROADMAP.md      # Full 2D-to-3D thesis roadmap, ablations & experimental matrix
-├── 📂 allData/               # Processed evaluation and training datasets (.csv)
+├── 📂 allData/               # Consolidated evaluation and training datasets (S1 to S4)
 ├── 📂 config3D/              # Trainer configuration (.yaml) files for PPO (S3 & S4)
 ├── 📂 contents/              # High-resolution screenshots and video demonstrations
 │   ├── 📂 multiAgent3D/      # Swarm flight videos and demonstration images
 │   └── 📂 singleAgent3D/     # Single drone flight videos and demonstration images
-├── 📂 doc/                   # Detailed technical documentation suite
+├── 📂 data/                  # Raw 3D test evaluation logs (.csv)
+├── 📂 docs/                  # Detailed technical documentation suite
 ├── 📂 output/                # Comprehensive analysis reports, thesis figures, and metric summaries
 ├── 📂 results/               # Trained models (.onnx checkpoints) and TensorBoard logs
-└── 📂 scripts/               # C# Unity controllers, configs, and Python analysis scripts
+└── 📂 scripts/               # C# Unity controllers, configs, and Python analysis tools
     ├── 📂 multi_agent_scripts/   # Multi-agent C# scripts (DroneController, DroneEnvironmentConfig)
-    ├── 📂 single_agent_scripts/  # Single-agent C# scripts
-    └── 📂 data_extraction_script/ # Python evaluation and plotting scripts
+    └── 📂 single_agent_scripts/  # Single-agent C# scripts
 ```
 
 ---
@@ -127,13 +127,13 @@ Across 100 evaluation episodes at mid-difficulty:
 
 ## Detailed Documentation
 
-For an in-depth review of the project's technical implementation, architecture, reward formulations, and performance benchmarks, refer to the documentation suite in `/doc`:
+For an in-depth review of the project's technical implementation, architecture, reward formulations, and performance benchmarks, refer to the documentation suite in `/docs`:
 
-- [Project Overview](./doc/overview.md) — System architecture and configuration comparison
-- [Environment and Task](./doc/environment_and_task.md) — 3D arena bounds, observation spaces, and ray perception
-- [RL Algorithm](./doc/rl_algorithm.md) — PPO hyperparameters and curriculum progression
-- [Reward Design](./doc/reward_design.md) — Mathematical reward shaping, urgency multipliers, and penalties
-- [Network Architecture](./doc/network_architecture.md) — Neural network topologies (S3 256×2 vs S4 512×3)
-- [Multi-Agent Setup](./doc/multi_agent.md) — Cooperative swarm design, GPS queries, and target reservation
-- [Results and Analysis](./doc/results.md) — Comprehensive test metrics, rankings, and baseline comparisons
+- [Project Overview](./docs/overview.md) — System architecture and configuration comparison
+- [Environment and Task](./docs/environment_and_task.md) — 3D arena bounds, observation spaces, and ray perception
+- [RL Algorithm](./docs/rl_algorithm.md) — PPO hyperparameters and curriculum progression
+- [Reward Design](./docs/reward_design.md) — Mathematical reward shaping, urgency multipliers, and penalties
+- [Network Architecture](./docs/network_architecture.md) — Neural network topologies (S3 256×2 vs S4 512×3)
+- [Multi-Agent Setup](./docs/multi_agent.md) — Cooperative swarm design, GPS queries, and target reservation
+- [Results and Analysis](./docs/results.md) — Comprehensive test metrics, rankings, and baseline comparisons
 - [Thesis Roadmap](./THESIS_ROADMAP.md) — 2D-to-3D research narrative, ablations, and thesis structure

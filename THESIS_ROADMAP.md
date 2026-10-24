@@ -112,7 +112,7 @@ min_lesson_length: 20 (hover)
 ```
 
 ### 2.6 Training Steps
-1. Run: `mlagents-learn config3D/3Dsingle_occ_ppo.yaml --run-id=drone3d_v15 --train`
+1. Run: `mlagents-learn config3D/single_occ_ppo.yaml --run-id=drone3d_v15 --train`
 2. Monitor TensorBoard: `tensorboard --logdir results`
 3. Watch for curriculum stage advancement in logs
 4. Target: 5-10 million steps or all curriculum stages completed
@@ -221,7 +221,7 @@ Call ClearReservations() in UpdateEnvironment().
 - Update BehaviorParameters Vector Observation Size to 34
 
 ### 3.3 Configuration
-YAML: `config3D/3Dmulti_occ_ppo.yaml`
+YAML: `config3D/multi_occ_ppo.yaml`
 Run ID: multi_drone3d_v1
 
 ### 3.4 Metrics to Compare vs Single Agent

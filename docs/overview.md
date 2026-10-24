@@ -36,7 +36,7 @@ g:/unity_files/Unity_ML_3DAgent/
 ├── config3D/
 │   ├── single_occ_ppo.yaml
 │   └── multi_occ_ppo.yaml
-├── doc/
+├── docs/
 ├── output/
 └── scripts/
     ├── single_agent_scripts/
