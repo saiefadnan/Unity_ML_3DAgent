@@ -21,8 +21,8 @@ flowchart LR
         RL["ML-Agents PPO Trainer"]
     end
 
-    Drone -- Observations & Rewards --> RL
-    RL -- Actions (Throttle, Roll, Pitch, Yaw) --> Drone
+    Drone -- "Observations & Rewards" --> RL
+    RL -- "Actions (Throttle, Roll, Pitch, Yaw)" --> Drone
     Sensors --> Drone
 ```
 
