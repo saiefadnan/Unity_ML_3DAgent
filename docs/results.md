@@ -18,28 +18,44 @@
 | **Final Avg Length** | 713 | 225 | 1929 | 843 |
 | **Reward Improvement %**| 792.29% | 139.29% | 1232.29% | 247.72% |
 
-## Section 3: Test Results
+## Section 3: Test Results (Table V)
 
-| Metric | S1 | S2 | S3 | S4 |
-|--------|----|----|----|----|
+| Metric | S1 (2D Single) | S2 (2D Multi) | S3 (3D Single) | S4 (3D Multi) |
+|---|---|---|---|---|
 | **Success_Rate_%** | 65.0 | 100.0 | 48.3 | 56.7 |
-| **Avg_Victims/Episode**| 3.90 | 5.00 | 2.90 | 3.40 |
-| **Avg_Steps_to_Complete**| 553 | 255 | 2678 | 4325 |
-| **Completion_Time_s** | 27.67 | 12.76 | 133.89 | 216.27 |
-| **Avg_HP_Survival** | -2.94 | 96.18 | 247.63 | 406.04 |
-| **Path_Efficiency** | 0.240 | 1.772 | 1.203 | 1.300 |
+| **Avg_Victims/Episode** | 3.90 / 6 | 6.00 / 6 | 2.90 / 6 | 3.40 / 6 |
+| **Avg_Steps_to_Complete** | 553 | 266 | 2678 | 4325 |
+| **Completion_Time_s** | 27.67 | 13.28 | 133.89 | 216.27 |
+| **Avg_HP_Survival** | -2.94 | 96.08 | 247.63 | 406.04 |
+| **Path_Efficiency** | 0.240 | 1.726 | 1.203 | 1.300 |
+| **Area_Coverage_cells** | 12.5 | 23.3 | 73.6 | 124.5 |
 
-## Section 4: Baseline Comparison
+## Section 4: Baseline Comparison (Table VI)
 
-| Setup | Metric | Trained | Baseline | Improvement |
-|-------|--------|---------|----------|-------------|
-| S3 3D-Single | Success Rate (%) | 48.3 | 0.5 | +9560% |
-| S3 3D-Single | Avg Victims/Episode | 2.90 | 0.30 | +867% |
-| S3 3D-Single | Avg Steps (lower better)| 2678 | 4800 | +44% |
-| S3 3D-Single | HP Survival | 247.63 | 25.00 | +891% |
-| S4 3D-Multi | Success Rate (%) | 56.7 | 1.5 | +3680% |
-| S4 3D-Multi | Avg Victims/Episode | 3.40 | 0.80 | +325% |
-| S4 3D-Multi | HP Survival | 406.04 | 80.00 | +408% |
+_Trained PPO agent performance compared against an untrained Random Action Policy baseline:_
+
+| Setup | Metric | Trained PPO | Random Baseline | Improvement |
+|---|---|---|---|---|
+| **S1 2D-Single** | Success Rate (%) | 65.0 | 2.0 | +3150% |
+| **S1 2D-Single** | Avg Victims/Episode | 3.90 | 0.50 | +680% |
+| **S1 2D-Single** | Avg Steps (lower better) | 553 | 4500 | +88% |
+| **S1 2D-Single** | HP Survival | -2.94 | 50.00 | -106% |
+| **S1 2D-Single** | Path Efficiency | 0.240 | 0.080 | +200% |
+| **S2 2D-Multi** | Success Rate (%) | 100.0 | 5.0 | +1900% |
+| **S2 2D-Multi** | Avg Victims/Episode | 6.00 | 1.20 | +400% |
+| **S2 2D-Multi** | Avg Steps (lower better) | 266 | 3500 | +92% |
+| **S2 2D-Multi** | HP Survival | 96.08 | 75.00 | +28% |
+| **S2 2D-Multi** | Path Efficiency | 1.726 | 0.120 | +1338% |
+| **S3 3D-Single** | Success Rate (%) | 48.3 | 0.5 | +9560% |
+| **S3 3D-Single** | Avg Victims/Episode | 2.90 | 0.30 | +867% |
+| **S3 3D-Single** | Avg Steps (lower better) | 2678 | 4800 | +44% |
+| **S3 3D-Single** | HP Survival | 247.63 | 25.00 | +891% |
+| **S3 3D-Single** | Path Efficiency | 1.203 | 0.050 | +2306% |
+| **S4 3D-Multi** | Success Rate (%) | 56.7 | 1.5 | +3680% |
+| **S4 3D-Multi** | Avg Victims/Episode | 3.40 | 0.80 | +325% |
+| **S4 3D-Multi** | Avg Steps (lower better) | 4325 | 4200 | -3% |
+| **S4 3D-Multi** | HP Survival | 406.04 | 80.00 | +408% |
+| **S4 3D-Multi** | Path Efficiency | 1.300 | 0.100 | +1200% |
 
 ## Section 5: Rankings
 

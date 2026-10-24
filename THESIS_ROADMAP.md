@@ -273,27 +273,36 @@ Priority if time is limited: Ablation 1 and 2 are most important. 3, 4, 5 are op
 
 ## PHASE 5: Results and Analysis
 
-### 5.1 Cross-Environment Comparison Table
+### 5.1 Cross-Environment Comparison Table (Table V)
 
-| Metric | 2D Single | 2D Multi | 3D Single | 3D Multi |
+| Metric | 2D Single (S1) | 2D Multi (S2) | 3D Single (S3) | 3D Multi (S4) |
 |---|---|---|---|---|
-| Avg victims rescued | | | | |
-| Mission success rate | | | | |
-| Avg steps to completion | | | | |
-| Path efficiency | | | | |
-| Training steps to converge | | | | |
-| Reward std (stability) | | | | |
-| Crash rate | | | | |
-| Timeout rate | | | | |
+| Avg victims rescued | 3.90 / 6 | 6.00 / 6 | 2.90 / 6 | 3.40 / 6 |
+| Mission success rate | 65.0% | 100.0% | 48.3% | 56.7% |
+| Avg steps to completion | 553 | 266 | 2678 | 4325 |
+| Completion time (s) | 27.67 s | 13.28 s | 133.89 s | 216.27 s |
+| Avg HP Survival | -2.94 | 96.08 | 247.63 | 406.04 |
+| Path efficiency | 0.240 | 1.726 | 1.203 | 1.300 |
+| Area coverage (cells) | 12.5 | 23.3 | 73.6 | 124.5 |
+| Training steps to converge | 7,970,000 | 10,000,000 | 2,650,000 | 7,230,000 |
+| Reward std (stability) | 14.93 | 14.53 | 106.07 | 131.07 |
 
-### 5.2 Baseline Comparison Table
+### 5.2 Baseline Comparison Table (Table VI)
 
-| Metric | Random | Greedy | No Curriculum | PPO 3D Full |
+| Setup | Metric | Trained PPO | Random Baseline | Improvement |
 |---|---|---|---|---|
-| Avg victims rescued | | | | |
-| Mission success rate | | | | |
-| Path efficiency | | | | |
-| Crash rate | | | | |
+| S1 2D-Single | Success Rate (%) | 65.0% | 2.0% | +3150% |
+| S1 2D-Single | Avg Victims / Episode | 3.90 | 0.50 | +680% |
+| S1 2D-Single | Path Efficiency | 0.240 | 0.080 | +200% |
+| S2 2D-Multi | Success Rate (%) | 100.0% | 5.0% | +1900% |
+| S2 2D-Multi | Avg Victims / Episode | 6.00 | 1.20 | +400% |
+| S2 2D-Multi | Path Efficiency | 1.726 | 0.120 | +1338% |
+| S3 3D-Single | Success Rate (%) | 48.3% | 0.5% | +9560% |
+| S3 3D-Single | Avg Victims / Episode | 2.90 | 0.30 | +867% |
+| S3 3D-Single | Path Efficiency | 1.203 | 0.050 | +2306% |
+| S4 3D-Multi | Success Rate (%) | 56.7% | 1.5% | +3680% |
+| S4 3D-Multi | Avg Victims / Episode | 3.40 | 0.80 | +325% |
+| S4 3D-Multi | Path Efficiency | 1.300 | 0.100 | +1200% |
 
 ### 5.3 Ablation Table
 (see Phase 4)
