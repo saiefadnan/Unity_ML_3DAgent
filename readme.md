@@ -2,10 +2,30 @@
 
 _A Unity ML-Agents project focused on training autonomous quadcopters for Search and Rescue (SAR) missions in complex 3D environments with 6-DOF physics, 51-ray LiDAR proximity sensing, and cooperative multi-agent swarming._
 
-![3D Multi-Agent System in Action](./contents/multiAgent3D/image1.png)
-
 > [!NOTE]
 > This repository contains the **3D** phase of the research project. For the initial 2D baseline environment and models, visit [Unity_ML_Agent](../Unity_ML_Agent). For the overarching research narrative, experimental matrix, and comparative analysis plan, see [Thesis Roadmap](./THESIS_ROADMAP.md).
+
+---
+
+## Visual Demonstrations
+
+### Cooperative Multi-Agent Swarm (S4)
+| Swarm Formation & Launch | Telemetry & Victim Allocation | Parallel Area Search |
+| :---: | :---: | :---: |
+| [![S4 Formation](./contents/multiAgent3D/image1.png)](./contents/multiAgent3D/video.mp4) | [![S4 Telemetry](./contents/multiAgent3D/image2.png)](./contents/multiAgent3D/video.mp4) | [![S4 Search](./contents/multiAgent3D/image3.png)](./contents/multiAgent3D/video.mp4) |
+| *3-drone synchronized exploration* | *Decentralized target reservation* | *Clustered victim interception* |
+
+> 🎬 **Watch Demo Video**: [Multi-Agent 3D Swarm Flight (MP4)](./contents/multiAgent3D/video.mp4)
+
+---
+
+### Single-Agent Baseline (S3)
+| 3D Quadcopter Dynamics | 51-Ray LiDAR Perception | Cluttered Arena Navigation |
+| :---: | :---: | :---: |
+| [![S3 Dynamics](./contents/singleAgent3D/image1.png)](./contents/singleAgent3D/video.mp4) | [![S3 Perception](./contents/singleAgent3D/image2.png)](./contents/singleAgent3D/video.mp4) | [![S3 Navigation](./contents/singleAgent3D/image3.png)](./contents/singleAgent3D/video.mp4) |
+| *Angle Mode altitude & attitude hold* | *360° horizontal raycast detection* | *Static and complex obstacle avoidance* |
+
+> 🎬 **Watch Demo Video**: [Single-Agent 3D Drone Flight (MP4)](./contents/singleAgent3D/video.mp4)
 
 ---
 
